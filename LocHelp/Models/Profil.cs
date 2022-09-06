@@ -11,7 +11,5 @@ namespace LocHelp.Models
         public string Pseudo { get; set; }
         [MaxLength(20)]
         public string Statut { get; set; }
-
-
     }
 }
