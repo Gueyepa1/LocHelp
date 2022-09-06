@@ -19,6 +19,10 @@
     <Folder Include="Views\ProposerUnService\" />
     <Folder Include="wwwroot\assets\" />
     <Folder Include="wwwroot\images\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Admin\" />
+  </ItemGroup>
 </Project>
