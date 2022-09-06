@@ -1,0 +1,13 @@
+﻿.plus {
+	opacity: 1.0;
+}
+
+.plus:hover {
+	opacity: 0.7;
+}
+
+#imageLabel {
+	font-size: 1rem;
+	color: #6c757d;
+	opacity:0.65;
+}

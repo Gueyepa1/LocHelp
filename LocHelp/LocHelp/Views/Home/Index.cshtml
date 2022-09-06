@@ -1,0 +1,250 @@
+﻿@*@model LocHelp.ViewModel.HomeViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>Je suis la vue index</div>
+
+  @*  <ul>
+        <li>@Model.Message</li>
+        <li>@Model.Date.ToString("dd/MM/yyyy"))</li>
+
+        <li>@Model.Profil.Pseudo</li>
+        <li>@Model.Profil.Statut</li>
+        <li>@Model.ContactInfos.NumeroDeTelephone</li>
+        <li>@Model.ContactInfos.AdresseMail</li>
+    </ul>*@
+      @*<ul>
+        @Html.TextBox("pseudo", Model.Profil.Pseudo,new{style="ccolor:red", @class="ma-css"})
+        @Html.TextBox("statut", Model.Profil.Statut,new{style="ccolor:yellow", @class="ma-css"})
+        @Html.TextBox("adresse mail", Model.ContactInfos.AdresseMail,new{style="ccolor:blue", @class="ma-css"})
+<input type="submit" value="Envoyer" />
+    </ul>
+    <ul>
+        @Html.Label("estMajeur", "Cochez la case si vous êtes majeur")
+        @Html.CheckBox("estMajeur", true)
+<input type="submit" value="Envoyer" />
+    </ul>
+    <div>DropDownList</div>
+@Html.DropDownList("utilisateurChoisi", new SelectList(ViewBag.listUtilisateur,"Id", "Nom", "Prenom"))
+</body>
+</html>
+*@
+@model LocHelp.ViewModel.HomeViewModel
+@{
+	Layout = "~/Views/Shared/_LayoutLocHelp.cshtml";
+}
+<!-- Home Section-->
+		<h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Accueil</h2>
+		<!-- Icon Divider-->
+	@*	<div class="divider-custom">
+			<div class="divider-custom-line"></div>
+			<div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+			<div class="divider-custom-line"></div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 ms-auto"><p class="lead">Cette application a été conçue afin de proposer ou de répondre à des demandes de service, de prêt de matériels, d'hebergement temporaire etc. Elle donne aussie la possibilité de régler des loyers et les charges locatives de l'immeuble' </p></div>
+			<div class="col-lg-4 me-auto"><p class="lead">a la fin des sondages, on verra la prestation de service la plus utilisée.</p></div>
+		</div>*@
+
+     @*        <div class="container-fluid">
+           <div class="row flex-xl-nowrap">
+            <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+              <ul class="list-unstyled">
+                <li class="media my-4">
+                 
+                </li>
+              </ul>
+             </div>
+
+             <main class="col-12 col-md-6 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+              Le groupe 2 espère réussir son projet en présentant l'ensemble des fonctionnalités prévues et en respectant le cahier des charges. Le client sera satisfait.
+              <br> <br>
+              <div class="d-grid gap-2 col-12 mx-auto d-md-block">
+                <button class="btn btn-secondary" type="button"><a href="#Admin delete.html"> De quoi avez-vous besoin ?</a></button>
+              </div>
+              <br>
+              <div class="text-center"> 
+                <h3>En plus de vous aider dans la gestion administrative, LocHELP sert aussi à partager des services et de matériel en 4 étapes.</h3>
+            </div>
+            <br>
+            <section id="#description" class="container">
+           <div class="row">
+            <div class="col-md-3 text-center">
+              <img src="images/jedemande_1.png" alt="PosterDemande">
+              <br><br>
+              <h6>Je poste une<br>demande</h6>
+          </div>
+          <div class="col-md-3 text-center">
+            <img src="/images/jere_ponds_1.png" alt="RepondDemande">
+            <br><br>
+              <h6>Je réponds une<br>demande</h6>
+          </div>
+          <div class="col-md-3 text-center">
+            <img src="/images/jerecoisproposition_1.png" alt="ReceptionDemande">
+            <br><br>
+              <h6>Je reçois des<br>propositions</h6>
+          </div>
+          <div class="col-md-3 text-center">
+            <img src="/images/jerealiseprestation_1.png" alt="RealiseDemande">
+            <br><br>
+              <h6>Je réalise la<br>prestation</h6>
+          </div>
+           </div>
+          </section>
+              <br><br> 
+              <section id="#proposition" class="container">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="p-3 border bg-light” style=“border-radius: 5px">
+                      <div class="row">
+                        <div class="col">
+                          <div class="col-lg-1 ">
+                            <div style="float: left">
+                              <img src="images/mbappe.jpeg" alt="Mbappe" width="100wv%" height="100hv%"/>
+                            </div>
+                          </div>
+                          <div class="col-lg-auto offset-lg-3" > 
+                             <h6> Kylian <br> Il y'a 2 heures</h6>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <h5>Titre annonce</h5>
+                        </div>
+                        <div class="col-lg-2">
+                          <h6>Prix - durée</h6>
+                        </div>
+                        
+                          <div class="col-lg-2" style="float: right; writing-mode: vertical-rl;">
+                            <!-- <div class=“col-lg-2” style=“float: right; writing-mode: vertical-rl;“>  -->
+                               <div class="">
+                                 <i class="bi bi-hand-thumbs-up"></i>
+                                 <i class="bi bi-hand-thumbs-down"></i>
+                                 <i class="bi bi-chat-text"></i>
+                                 <i class="bi bi-flag"></i>
+                               </div>
+                             <!-- </div> -->
+                           </div>
+                    
+                      </div>
+
+
+                     <p> Je propose les cours de soutien en maths et psc physique pour les classes de 6eme, 5eme et 2nd. Pour toute information supplémentaire, veuillez me contacter au 06 05 87 42.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="col-lg-2">
+                  </div>
+                </div>
+                
+               </section>
+              <br>
+              <div class="col-12">
+                <div class="p-3 border bg-light" style="border-radius: 5px">Courses</div>
+              </div>
+              <br>
+              <div class="col-12">
+                <div class="p-3 border bg-light" style="border-radius: 5px">Cuisine</div>
+              </div>
+
+             </main>
+             <br><br><br><br><br><br>
+             <div class="col-12 col-md-3 d-xl-block col-xl-2 bd-toc">
+               <br><br><br><br>
+               <div class="row">
+                
+                <!-- <div class="d-flex flex-column border bd-light mb-3" style="border-radius: 5px;" > -->
+                 
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="d-grid gap-2 col-12 mx-auto d-md-block">
+                        <button class="btn btn-secondary" type="button"><a href="#Admin delete.html"><i class="bi bi-house"></i> Page d'acceuil</a></button>
+                      </div>
+                    </div>
+                </div>
+                  <div class="col-md-10 col-md-offset-1">
+                    
+                    <br>
+
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="d-grid gap-2 col-12 mx-auto d-md-block">
+                          <button class="btn btn-secondary" type="button"><a href="#Admin delete.html"><i class="bi bi-calendar-event"></i> Catalogue </a></button>
+                        </div>
+                      </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="d-grid gap-2 col-12 mx-auto d-md-block">
+                        <button class="btn btn-secondary" type="button"><a href="#Admin delete.html"><i class="bi bi-calendar-event"></i> Liste de Demande </a></button>
+                      </div>
+                    </div>
+                </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="d-grid gap-2 col-12 mx-auto d-md-block">
+                          <button class="btn btn-secondary" type="button"><a href="#Admin delete.html"><i class="bi bi-calendar-event"></i> proposer un service </a></button>
+                        </div>
+                      </div>
+                  </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="d-grid gap-2 col-12 mx-auto d-md-block">
+                          <button class="btn btn-secondary" type="button"><a href="#Admin delete.html"><i class="bi bi-calendar-event"></i> Faire une demande </a></button>
+                        </div>
+                      </div>
+                  </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="d-grid gap-2 col-12 mx-auto d-md-block">
+                          <button class="btn btn-secondary" type="button"><a href="#Admin delete.html"><i class="bi bi-calendar-event"></i> Loyer </a></button>
+                        </div>
+                      </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="d-grid gap-2 col-12 mx-auto d-md-block">
+                        <button class="btn btn-secondary" type="button"><a href="#Admin delete.html"><i class="bi bi-calendar-event"></i> Charge annuelle </a></button>
+                      </div>
+                    </div>
+                </div>
+                
+                    <!-- <div class="p-3 align-text-center"><button class="align-text-center"><i class="bi bi-house"></i> Page d'acceuil</button></div> -->
+                    <!-- <div class="p-3 "><i class="bi bi-calendar-event"></i> Evenements</div> -->
+                    <!-- <div class="p-3 "><i class="bi bi-wallet2"></i>  Petites annonces</div>
+                    <div class="p-3 "><i class="bi bi-shop"></i>  Bonnes adresses</div>
+                    <div class="p-3 "><i class="bi bi-people-fill"></i> Groupes</div>
+                    <div class="p-3 "><i class="bi bi-envelope"></i>  Messagerie</div>
+                    <div class="p-3 ">Vos voisins</div>
+                    <div class="p-3 "><i class="bi bi-pin-map"></i> Votre quartier</div>
+                    <div class="p-3 "><i class="bi bi-person-plus"></i> Inviter vos voisins</div> -->
+                   </div>
+                <!-- </div> -->
+               </div>
+             </div>
+           </div>
+          </div>
+        <script src="/js/jquery-3.6.0.js"></script>
+        <script src="/js/jquery.validate-vsdoc.js"></script>
+        <script src="/js/jquery.validate.unobtrusive.js"></script>
+        <!-- Bootstrap core JS-->
+        <script src="/js/bootstrap.bundle.js"></script>
+        <!-- Core theme JS-->
+        <script src="/js/scripts.js"></script>
+    </body>
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright &copy; <a href="https://www.facebook.com/profile.php?id=100085418401385" target="_blank">
+            <img src="images/facebook.png" class="img-thumbnail" alt="LocHelp" width="5%"/>
+        </a></small></div>
+    </div>*@
