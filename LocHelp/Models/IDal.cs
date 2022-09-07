@@ -18,6 +18,8 @@ namespace LocHelp.Models
         void ModifierUtilisateur(Utilisateur utilisateur);
         //void ModifierUtilisateur(int id, string pseudo, string statut, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTel, string adresseMail, int numeroRue, string nomRue, int codePostal, string commune);
         public Utilisateur Authentifier(string identifiant, string password);
+        bool UtilisateurExiste(string numeroDeTel);
+        void SupprimerUtilisateur(int id);
 
         void CreerPrestationDeService(TypeDeService typeDeService, DateTime dateDeDebut, DateTime dateDeFin, string tarif, string description, int id = 0);
         List<PrestationDeService> ObtientToutesLesPrestationsDeServices();
