@@ -140,26 +140,50 @@ namespace LocHelp.Models
             _bddContext.SaveChanges();
 
         }
-    //public void ModifierUtilisateur(int id, string pseudo, string statut, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTel, string adresseMail, int numeroRue, string nomRue, int codePostal, string commune)
-    //{
-    //    Profil profil = new Profil() { Pseudo = pseudo, Statut = statut };
-    //    PersonnelInfos personnelInfos = new PersonnelInfos() { Nom = nom, Prenom = prenom, DateDeNaissance = dateDeNaissance };
-    //    AdresseContact adresseContact = new AdresseContact() { NumeroDeLaRue = numeroRue, NomDeLaRue = nomRue, CodePostal = codePostal, Commune = commune };
-    //    ContactInfos contactInfos = new ContactInfos() { NumeroDeTelephone = numeroDeTel, AdresseMail = adresseMail, AdresseContact = adresseContact };
-    //    //Utilisateur utilisateur = new Utilisateur() { Profil = profil, PersonnelInfos = personnelInfos, ContactInfos = contactInfos };
-    //    Utilisateur utilisateur = _bddContext.Utilisateur.Find(id);
-    //    if (utilisateur != null)
-    //    {
 
-    //        utilisateur.Profil = profil;
-    //        utilisateur.PersonnelInfos = personnelInfos;
-    //        utilisateur.ContactInfos = contactInfos;
-    //        _bddContext.SaveChanges();
+        public void SupprimerUtilisateur(int id)
+        {
+            Utilisateur utilisateurASupprimer = this._bddContext.Utilisateur.Find(id);
+            _bddContext.Utilisateur.Update(utilisateurASupprimer);
+            _bddContext.SaveChanges();
+        }
+
+        public void SupprimerUtilisateur(string pseudo, string nom, DateTime dateDeNaissance, string prenom, string numeroDeTelephone, string adresseMail, int numeroDeLaRue, string nomDeLaRue, int codePostal, string commune, string identifiant, string motDePasse)
+        {
+            Utilisateur utilisateurASupprimer = this._bddContext.Utilisateur.Where(r => r.PersonnelInfos.Nom == nom && r.PersonnelInfos.Prenom == prenom).FirstOrDefault();
+            if (utilisateurASupprimer != null)
+            {
+                _bddContext.Utilisateur.Update(utilisateurASupprimer);
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public bool UtilisateurExiste(string numeroDeTelephone)
+        {
+            return _bddContext.Utilisateur.ToList().Any(utilisateur =>
+            string.Compare(utilisateur.ContactInfos.NumeroDeTelephone, numeroDeTelephone,
+            StringComparison.CurrentCultureIgnoreCase) == 0);
+        }
+        //public void ModifierUtilisateur(int id, string pseudo, string statut, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTel, string adresseMail, int numeroRue, string nomRue, int codePostal, string commune)
+        //{
+        //    Profil profil = new Profil() { Pseudo = pseudo, Statut = statut };
+        //    PersonnelInfos personnelInfos = new PersonnelInfos() { Nom = nom, Prenom = prenom, DateDeNaissance = dateDeNaissance };
+        //    AdresseContact adresseContact = new AdresseContact() { NumeroDeLaRue = numeroRue, NomDeLaRue = nomRue, CodePostal = codePostal, Commune = commune };
+        //    ContactInfos contactInfos = new ContactInfos() { NumeroDeTelephone = numeroDeTel, AdresseMail = adresseMail, AdresseContact = adresseContact };
+        //    //Utilisateur utilisateur = new Utilisateur() { Profil = profil, PersonnelInfos = personnelInfos, ContactInfos = contactInfos };
+        //    Utilisateur utilisateur = _bddContext.Utilisateur.Find(id);
+        //    if (utilisateur != null)
+        //    {
+
+        //        utilisateur.Profil = profil;
+        //        utilisateur.PersonnelInfos = personnelInfos;
+        //        utilisateur.ContactInfos = contactInfos;
+        //        _bddContext.SaveChanges();
 
 
 
-    //    }
-    //}
-}
+        //    }
+        //}
+    }
 }
 
