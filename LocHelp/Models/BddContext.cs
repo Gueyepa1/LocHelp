@@ -16,7 +16,7 @@ namespace LocHelp.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=LocHelp");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=Mamadou1.;database=Projet2Groupe2");
 
         }
         public void InitializeDb()
