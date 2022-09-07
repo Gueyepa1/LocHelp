@@ -158,10 +158,11 @@ namespace LocHelp.Models
             }
         }
 
-        public bool UtilisateurExiste(string numeroDeTel)
+
+        public bool UtilisateurExiste(string numeroDeTelephone)
         {
             return _bddContext.Utilisateur.ToList().Any(utilisateur =>
-            string.Compare(utilisateur.ContactInfos.NumeroDeTelephone, numeroDeTel,
+            string.Compare(utilisateur.ContactInfos.NumeroDeTelephone, numeroDeTelephone,
             StringComparison.CurrentCultureIgnoreCase) == 0);
         }
         //public void ModifierUtilisateur(int id, string pseudo, string statut, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTel, string adresseMail, int numeroRue, string nomRue, int codePostal, string commune)
