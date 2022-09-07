@@ -12,7 +12,8 @@ namespace LocHelp.Models
 
         Utilisateur CreerUtilisateur( string pseudo, string statut, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTel, string adresseMail, int numeroRue, string nomRue, int codePostal, string commune, string identifiant, string motDepasseRole, Role role = Role.Locataire);
 
-       
+       void SupprimerUtilisateur(int id);
+        bool UtilisateurExiste(string numeroDeTel);
 
         // void ModifierUtilisateur(int id, string pseudo, string prenom, string adresseMail);
         void ModifierUtilisateur(Utilisateur utilisateur);
@@ -23,7 +24,7 @@ namespace LocHelp.Models
         List<PrestationDeService> ObtientToutesLesPrestationsDeServices();
         void SupprimerPrestationDeService(int id);
         bool PrestationExiste(string description);
-        void ModifierPrestationDeService(int id, TypeDeService typeDeService, DateTime dateDeDebut, DateTime dateDeFin, string tarif, string description, string imagePath);
+        void ModifierPrestationDeService(int id, TypeDeService typeDeService, DateTime dateDeDebut, DateTime dateDeFin, string tarif, string description, string imagePath,Role role=Role.Locataire);
 
 
     }

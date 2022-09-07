@@ -1,5 +1,5 @@
 ﻿@using LocHelp.Models
-@model List<LocHelp.Models.PrestationDeService>
+@model List<LocHelp.Models.Utilisateur>
 @{
 	Layout = "~/Views/Shared/_LayoutLocHelp.cshtml";
 }
@@ -13,29 +13,31 @@
 		<div class="row justify-content-start">
 			@foreach (var prestation in Model)
 			{
-				string editlink = "/PrestationDeService/ModifierPrestation/" + prestation.Id;
-				string deletelink = "/PrestationDeService/SupprimerPrestation/" + prestation.Id;
+				string editlink = "/Utilisateur/ModifierPrestation/" + prestation.Id;
+				string deletelink = "/Utilisateur/SupprimerPrestation/" + prestation.Id;
 				<div class="card col-6 m-5" style="width: 18rem;">
 					<div class="card-body d-flex flex-column justify-content-between">
                         <div>
-                            <h5 class="card-title">@prestation.TypeDeService</h5>
+                            <h5 class="card-title">@prestation.PrestationDeService.TypeDeService</h5>
                             <div class="my-3">
-                                <img src="@prestation.ImagePath" width="200" height="200" />
+                                <img src="@prestation.PrestationDeService.ImagePath" width="200" height="200" />
                             </div>
                             
-                            <h6 class="card-subtitle mb-2 text-muted">@prestation.DateDeDebut</h6>
-							<h6 class="card-subtitle mb-2 text-muted">@prestation.DateDeFin</h6>
-                           <h6 class="card-subtitle mb-2 text-muted">@prestation.Tarif</h6>
-                            <p class="card-text">@prestation.Description</p>
+                            <h6 class="card-subtitle mb-2 text-muted">@prestation.PrestationDeService.DateDeDebut</h6>
+							<h6 class="card-subtitle mb-2 text-muted">@prestation.PrestationDeService.DateDeFin</h6>
+                           <h6 class="card-subtitle mb-2 text-muted">@prestation.PrestationDeService.Tarif</h6>
+                            <p class="card-text">@prestation.PrestationDeService.Description</p>
 
                         </div>
 			
                         <div>
-                            <a href=@editlink class="card-link">Modifier</a>
+							@*@if( User.IsInRole(Role.Locataire.ToString()))*@
+                            <a href=@("/Utilisateur/ModifierPrestation/" + prestation.PrestationDeService.Id) class="card-link">Modifier</a>
 
                             @if (User.IsInRole(Role.Locataire.ToString()))
                             {
                                 <a href=@deletelink class="card-link">Supprimer</a>
+								 <a href=@editlink class="card-link">Modifier</a>
                             }
 
                         </div>

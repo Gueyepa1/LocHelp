@@ -41,7 +41,7 @@ namespace LocHelp.Models
             this._bddContext.SaveChanges();
         }
 
-        public void ModifierPrestationDeService(int id, TypeDeService typeDeService, DateTime dateDeDebut, DateTime dateDeFin, string tarif, string description, string imagePath)
+        public void ModifierPrestationDeService(int id, TypeDeService typeDeService, DateTime dateDeDebut, DateTime dateDeFin, string tarif, string description, string imagePath, Role role=Role.Locataire)
         {
             PrestationDeService prestationUpdate = this._bddContext.PrestationDeServices.Find(id);
             if (prestationUpdate != null)
