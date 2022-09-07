@@ -1,13 +1,17 @@
 ﻿using LocHelp.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace LocHelp.Controllers.home
 {
     public class UtilisateurController : Controller
     {
-       
+
         [HttpGet]
         public IActionResult ModifierUtilisateur(int id)
         {
@@ -43,7 +47,6 @@ namespace LocHelp.Controllers.home
                 return View("Error");
             }
         }
-
 
     }
 }

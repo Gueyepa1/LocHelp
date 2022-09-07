@@ -13,13 +13,59 @@ namespace LocHelp.Models
         private BddContext _bddContext;
         public Dal()
         {
-            _bddContext = new BddContext();
+            this._bddContext = new BddContext();
+        }
+        public void Dispose()
+        {
+            this._bddContext.Dispose();
+        }
+        public void CreerPrestationDeService(TypeDeService typeDeService,DateTime dateDeDebut, DateTime dateDeFin, string tarif, string description,int id=0 )
+        {
+            PrestationDeService prestationDeServiceToAdd= new PrestationDeService {TypeDeService= typeDeService, DateDeDebut =dateDeDebut, DateDeFin=dateDeFin, Description=description};
+            if(id!=0)
+            {
+                prestationDeServiceToAdd.Id = id;
+            }
+            this._bddContext.PrestationDeServices.Add(prestationDeServiceToAdd);
+            this._bddContext.SaveChanges();
+        }
+        public List<PrestationDeService> ObtientToutesLesPrestationsDeServices()
+        {
+            List<PrestationDeService> listePrestation = this._bddContext.PrestationDeServices.ToList();
+            return listePrestation;
+        }
+        public void  SupprimerPrestationDeService(int id)
+        {
+            PrestationDeService prestationdelete = this._bddContext.PrestationDeServices.Find(id);
+            this._bddContext.PrestationDeServices.Remove(prestationdelete);
+            this._bddContext.SaveChanges();
+        }
+
+        public void ModifierPrestationDeService(int id, TypeDeService typeDeService, DateTime dateDeDebut, DateTime dateDeFin, string tarif, string description, string imagePath, Role role=Role.Locataire)
+        {
+            PrestationDeService prestationUpdate = this._bddContext.PrestationDeServices.Find(id);
+            if (prestationUpdate != null)
+            {
+                prestationUpdate.TypeDeService = typeDeService;
+                prestationUpdate.DateDeDebut = dateDeDebut;
+                prestationUpdate.DateDeFin = dateDeFin;
+                prestationUpdate.Tarif = tarif;
+                prestationUpdate.Description = description;
+                prestationUpdate.ImagePath = imagePath;
+                this._bddContext.SaveChanges();
+            }
+        }
+
+        public bool PrestationExiste(string description)
+        {
+
+            return _bddContext.PrestationDeServices.ToList().Any(prestationDeService=> string.Compare(prestationDeService.Description,description, StringComparison.CurrentCultureIgnoreCase) == 0);
         }
 
         public void DeleteCreateDatabase()
         {
-            _bddContext.Database.EnsureDeleted();
-            _bddContext.Database.EnsureCreated();
+            this._bddContext.Database.EnsureDeleted();
+            this._bddContext.Database.EnsureCreated();
         }
         public List<Utilisateur> ObtientTousLesUtilisateurs()
         {
@@ -40,10 +86,7 @@ namespace LocHelp.Models
             return null;
         }
 
-        public void Dispose()
-        {
-            _bddContext.Dispose();
-        }
+       
         public static string EncodeMD5(string motDePasse)
         {
             string motDePasseSel = "LocHelp" + motDePasse + "ASP.NET MVC";
@@ -56,7 +99,7 @@ namespace LocHelp.Models
             Utilisateur user = this._bddContext.Utilisateur.Include(u=>u.Compte).FirstOrDefault(u => u.Compte.Identifiant == identifiant && u.Compte.MotDePasse == motDePasse);
             return user;
         }
-        public Utilisateur CreerUtilisateur( string pseudo, string statut, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTel, string adresseMail, int numeroRue, string nomRue, int codePostal, string commune,string identifiant,string motDepasse, Role role = Role.ReadWrite)
+        public Utilisateur CreerUtilisateur( string pseudo, string statut, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTel, string adresseMail, int numeroRue, string nomRue, int codePostal, string commune,string identifiant,string motDepasse, Role role = Role.Locataire)
         {
             Profil profil = new Profil() { Pseudo = pseudo, Statut = statut };
             _bddContext.Profil.Add(profil);
@@ -114,6 +157,7 @@ namespace LocHelp.Models
                 _bddContext.SaveChanges();
             }
         }
+
 
         public bool UtilisateurExiste(string numeroDeTelephone)
         {

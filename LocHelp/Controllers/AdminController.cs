@@ -54,7 +54,7 @@ namespace LocHelp.Controllers
             }
             if (!ModelState.IsValid)
                 return View(utilisateur);
-            dal.CreerUtilisateur(utilisateur.Profil.Pseudo, utilisateur.Profil.Statut, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.Prenom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone, utilisateur.ContactInfos.AdresseMail, utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue, utilisateur.ContactInfos.AdresseContact.NomDeLaRue, utilisateur.ContactInfos.AdresseContact.CodePostal, utilisateur.ContactInfos.AdresseContact.Commune, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, Role.ReadWrite);
+            dal.CreerUtilisateur(utilisateur.Profil.Pseudo, utilisateur.Profil.Statut, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.Prenom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone, utilisateur.ContactInfos.AdresseMail, utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue, utilisateur.ContactInfos.AdresseContact.NomDeLaRue, utilisateur.ContactInfos.AdresseContact.CodePostal, utilisateur.ContactInfos.AdresseContact.Commune, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, Role.Locataire);
             return RedirectToAction("Index");
         }
 

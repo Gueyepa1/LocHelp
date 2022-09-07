@@ -18,11 +18,16 @@
         public virtual Compte Compte { get; set; }
         public Role Role { get; set; }
 
+        //public int? PrestationDeServiceId { get; set; }
+
+        //public virtual PrestationDeService PrestationDeService { get; set; }
+
+
     }
     public enum Role
     {
         Admin,
-        ReadWrite,
-        ReadOnly
+        Locataire,
+        Proprietaire
     }
 }
