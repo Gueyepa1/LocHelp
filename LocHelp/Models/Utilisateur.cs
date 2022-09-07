@@ -22,7 +22,7 @@
     public enum Role
     {
         Admin,
-        ReadWrite,
-        ReadOnly
+        Locataire,
+        Proprietaire
     }
 }

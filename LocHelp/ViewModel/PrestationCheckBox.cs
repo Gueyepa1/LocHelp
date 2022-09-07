@@ -2,10 +2,10 @@
 
 namespace LocHelp.ViewModel
 {
-    public class PropositionCheckBox
+    public class PrestationCheckBox
     {
         public int Id {get; set;}
-        public PrestationDeService ChoixDePrestation { get; set; }
+        public PrestationDeService TypeDePrestation { get; set; }
         public bool EstSelectionne { get; set; }
 
     }
