@@ -1,0 +1,56 @@
+﻿@using LocHelp.Models
+@model List<LocHelp.Models.PrestationDeService>
+@{
+	Layout = "~/Views/Shared/_LayoutLocHelp.cshtml";
+}
+		<h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Prestation de service</h2>
+		<!-- Icon Divider-->
+		<div class="divider-custom">
+			<div class="divider-custom-line"></div>
+			<div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+			<div class="divider-custom-line"></div>
+		</div>
+		<div class="row justify-content-start">
+			@foreach (var prestation in Model)
+			{
+				string editlink = "/PrestationDeService/ModifierPrestation/" + prestation.Id;
+				string deletelink = "/PrestationDeService/SupprimerPrestation/" + prestation.Id;
+				<div class="card col-6 m-5" style="width: 18rem;">
+					<div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title">@prestation.TypeDeService</h5>
+                            <div class="my-3">
+                                <img src="@prestation.ImagePath" width="200" height="200" />
+                            </div>
+                            
+                            <h6 class="card-subtitle mb-2 text-muted">@prestation.DateDeDebut</h6>
+							<h6 class="card-subtitle mb-2 text-muted">@prestation.DateDeFin</h6>
+                           <h6 class="card-subtitle mb-2 text-muted">@prestation.Tarif</h6>
+                            <p class="card-text">@prestation.Description</p>
+
+                        </div>
+			
+                        <div>
+                            <a href=@editlink class="card-link">Modifier</a>
+
+                            @if (User.IsInRole(Role.Locataire.ToString()))
+                            {
+                                <a href=@deletelink class="card-link">Supprimer</a>
+                            }
+
+                        </div>
+						
+
+					</div>
+				</div>
+			}
+			<div class="col-4 m-5" style="width: 18rem;">
+				<a href="/PrestationDeService/CreerPrestation">
+					<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" fill="black" class="align-middle bi bi-plus" viewBox="0 0 16 16">
+						<path class="plus" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+					</svg>
+				</a>
+			</div>
+
+		</div>
+	

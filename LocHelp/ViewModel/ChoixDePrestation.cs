@@ -4,6 +4,6 @@ namespace LocHelp.ViewModel
 {
     public class ChoixDePrestation
     {
-        public List<PropositionCheckBox> ListeDePrestation {get; set;}
+        public List<PrestationCheckBox> ListeDePrestation {get; set;}
     }
 }

@@ -15,8 +15,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Catalogue\" />
-    <Folder Include="Views\ListeDeDemande\" />
-    <Folder Include="Views\ProposerUnService\" />
     <Folder Include="wwwroot\assets\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="Views\Admin\" />

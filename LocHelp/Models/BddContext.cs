@@ -11,13 +11,17 @@ namespace LocHelp.Models
         public DbSet<ContactInfos> ContactInfos { get; set; }
         public DbSet<AdresseContact> AdresseContact { get; set; }
         public DbSet<Compte> Compte { get; set; }
+        public DbSet<PrestationDeService> PrestationDeServices { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=Mamadou1.;database=Projet2Groupe2");
+
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=LocHelp");
+
         }
         public void InitializeDb()
         {
+            PrestationDeService prestationDeService = new PrestationDeService();
             Profil profil1 = new Profil() { Pseudo = "gueyepa", Statut = "locataire" };
             PersonnelInfos personnelInfos1 = new PersonnelInfos() { Nom = "GUEYE", Prenom = "Papa", DateDeNaissance = new DateTime(2000, 09, 08, 15, 45, 54) };
             AdresseContact adresseContact1 = new AdresseContact() { NumeroDeLaRue = 01,NomDeLaRue = "Rue Guynemer", CodePostal = 76350, Commune = "Oissel" };
@@ -33,24 +37,59 @@ namespace LocHelp.Models
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
             this.Utilisateur.AddRange(
-                new Utilisateur
-                {
-                    Id = 1,
-                    Profil = profil1,
-                    ContactInfos = contactInfos1,
-                    PersonnelInfos = personnelInfos1,
-                    Compte = compte1
-                },
-                new Utilisateur
-                {
-                    Id = 2,
-                    Profil = profil2,
-                    ContactInfos = contactInfos2,
-                    PersonnelInfos = personnelInfos2,
-                    Compte = compte2
-                }
+               new Utilisateur
+               {
+                   Id = 1,
+                   Profil = profil1,
+                   ContactInfos = contactInfos1,
+                   PersonnelInfos = personnelInfos1,
+                   Compte = compte1
+               },
+               new Utilisateur
+               {
+                   Id = 2,
+                   Profil = profil2,
+                   ContactInfos = contactInfos2,
+                   PersonnelInfos = personnelInfos2,
+                   Compte = compte2
+               }
             );
+            this.PrestationDeServices.AddRange(
+            new PrestationDeService
+                {
+                    Id=1,
+                    TypeDeService=TypeDeService.CoursDeSoutien,
+                    DateDeDebut = DateTime.Now,
+                    DateDeFin = DateTime.Now,
+                    Tarif ="15€",
+                    Description="Je propose les cours de soutien pour les classes: 6ème, 5ème 3ème,, 2nd et Tle S, uniquement les samedis et dimaches"
+
+                },
+                
+                  new PrestationDeService
+                  {
+                      Id = 2,
+                      TypeDeService = TypeDeService.decoration,
+                      DateDeDebut = DateTime.Now,
+                      DateDeFin = DateTime.Now,
+                      Tarif = "50€",
+                      Description = "Je vous propose une décoration intérieure dans toutes les pièces de votre appartement. je suis licencié en décoration."
+
+                  },
+                    new PrestationDeService
+                    {
+                        Id = 3,
+                        TypeDeService = TypeDeService.Cuisine,
+                        DateDeDebut = DateTime.Now,
+                        DateDeFin = DateTime.Now,
+                        Tarif = "0€",
+                        Description = "Jemets mon matériel de cuisine à la disposition des habitants de l'immeuble."
+
+                    }
+
+                );
             this.SaveChanges();
+         
         }
     }
 

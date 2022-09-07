@@ -7,5 +7,6 @@ namespace LocHelp.ViewModel
        
             public Utilisateur Utilisateur { get; set; }
             public bool Authentifie { get; set; }
+
     }
 }
