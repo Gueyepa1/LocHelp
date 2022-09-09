@@ -32,7 +32,7 @@
 			
                         <div>
 							@*@if( User.IsInRole(Role.Locataire.ToString()))*@
-                            <a href=@("/Utilisateur/ModifierPrestation/" + prestation.Id) class="card-link">Modifier</a>
+                            <a href=@("/PrestationDeService/ModifierPrestation/" + prestation.Id) class="card-link">Modifier</a>
 
                             @if (User.IsInRole(Role.Locataire.ToString()))
                             {

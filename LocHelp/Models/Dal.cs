@@ -19,14 +19,15 @@ namespace LocHelp.Models
         {
             this._bddContext.Dispose();
         }
-        public void CreerPrestationDeService(TypeDeService typeDeService,DateTime dateDeDebut, DateTime dateDeFin, string tarif, string description,int id=0 )
+
+        public void CreerPrestationDeService(TypeDeService typeDeService, TypeAnnonce typeAnnonce, DateTime dateDeDebut, DateTime dateDeFin, int tarif, string description, string imagePath, int UserId, int id = 0)
         {
-            PrestationDeService prestationDeServiceToAdd= new PrestationDeService {TypeDeService= typeDeService, DateDeDebut =dateDeDebut, DateDeFin=dateDeFin, Description=description};
-            if(id!=0)
+            PrestationDeService prestationDeService = new PrestationDeService { TypeDeService = typeDeService, TypeAnnonce = typeAnnonce, DateDeDebut = dateDeDebut, DateDeFin = dateDeFin, Description = description, ImagePath = imagePath, UtilisateurId = UserId };
+            if (id != 0)
             {
-                prestationDeServiceToAdd.Id = id;
+                prestationDeService.Id = id;
             }
-            this._bddContext.PrestationDeServices.Add(prestationDeServiceToAdd);
+            this._bddContext.PrestationDeServices.Add(prestationDeService);
             this._bddContext.SaveChanges();
         }
         public List<PrestationDeService> ObtientToutesLesPrestationsDeServices()
@@ -41,12 +42,13 @@ namespace LocHelp.Models
             this._bddContext.SaveChanges();
         }
 
-        public void ModifierPrestationDeService(int id, TypeDeService typeDeService, DateTime dateDeDebut, DateTime dateDeFin, string tarif, string description, string imagePath, Role role=Role.Locataire)
+        public void ModifierPrestationDeService(int id, TypeDeService typeDeService, TypeAnnonce typeAnnonce, DateTime dateDeDebut, DateTime dateDeFin, int tarif, string description, string imagePath, Role role = Role.Locataire)
         {
             PrestationDeService prestationUpdate = this._bddContext.PrestationDeServices.Find(id);
             if (prestationUpdate != null)
             {
                 prestationUpdate.TypeDeService = typeDeService;
+                prestationUpdate.TypeAnnonce = typeAnnonce;
                 prestationUpdate.DateDeDebut = dateDeDebut;
                 prestationUpdate.DateDeFin = dateDeFin;
                 prestationUpdate.Tarif = tarif;
@@ -165,6 +167,14 @@ namespace LocHelp.Models
             string.Compare(utilisateur.ContactInfos.NumeroDeTelephone, numeroDeTelephone,
             StringComparison.CurrentCultureIgnoreCase) == 0);
         }
+
+       
+
+       
+
+
+
+
         //public void ModifierUtilisateur(int id, string pseudo, string statut, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTel, string adresseMail, int numeroRue, string nomRue, int codePostal, string commune)
         //{
         //    Profil profil = new Profil() { Pseudo = pseudo, Statut = statut };

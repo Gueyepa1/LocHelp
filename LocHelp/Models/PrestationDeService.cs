@@ -13,13 +13,22 @@ namespace LocHelp.Models
         //public TypeEquipement TypeEquipement { get; set; }
         public DateTime DateDeDebut { get; set; }
         public DateTime DateDeFin { get; set; }
-        public string Tarif { get; set; }
+        public int Tarif { get; set; }
+        public TypeAnnonce TypeAnnonce { get; set; }
         public string Description { get; set; }
         public string ImagePath { get; set; }
         [NotMapped]
         public IFormFile Image { get; set; }
 
+        public int? UtilisateurId { get; set; }
+        public virtual Utilisateur Utilisateur { get; set; }
 
+
+    }
+
+    public enum TypeAnnonce
+    {
+        demande, proposition
     }
 
     public enum TypeDeService
