@@ -13,15 +13,10 @@
     {
     <fieldset>
         <legend>Modifier un utilisateur : </legend>
-        @Html.LabelFor(m => Model.Profil.Pseudo)
-        @Html.TextBoxFor(m => Model.Profil.Pseudo)
-        @Html.HiddenFor(m=>Model.Profil.Id)
+        @Html.LabelFor(m => Model.Pseudo)
+        @Html.TextBoxFor(m => Model.Pseudo)
+        @Html.HiddenFor(m=>Model.Id)
         @*@Html.ValidationMessageFor(m => Model.Profil.Pseudo)*@
-        <br />
-        @Html.LabelFor(m => Model.Profil.Statut)
-        @Html.TextBoxFor(m => Model.Profil.Statut)
-        @Html.HiddenFor(m=>Model.Profil.Id)
-        @*@Html.ValidationMessageFor(m => Model.Profil.Statut)*@
         <br />
         @Html.LabelFor(m => Model.PersonnelInfos.Nom)
         @Html.TextBoxFor(m => Model.PersonnelInfos.Nom)

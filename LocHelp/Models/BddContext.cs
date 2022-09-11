@@ -6,7 +6,7 @@ namespace LocHelp.Models
     public class BddContext : DbContext
     {
         public DbSet<Utilisateur> Utilisateur { get; set; }
-        public DbSet<Profil> Profil { get; set; }
+        public DbSet<Reglement> Reglement { get; set; }
         public DbSet<PersonnelInfos> PersonnelInfos { get; set; }
         public DbSet<ContactInfos> ContactInfos { get; set; }
         public DbSet<AdresseContact> AdresseContact { get; set; }
@@ -21,42 +21,56 @@ namespace LocHelp.Models
         }
         public void InitializeDb()
         {
-            //PrestationDeService prestationDeService = new PrestationDeService();
-            Profil profil1 = new Profil() { Pseudo = "gueyepa", Statut = "locataire" };
+
             PersonnelInfos personnelInfos1 = new PersonnelInfos() { Nom = "GUEYE", Prenom = "Papa", DateDeNaissance = new DateTime(2000, 09, 08, 15, 45, 54) };
             AdresseContact adresseContact1 = new AdresseContact() { NumeroDeLaRue = 01,NomDeLaRue = "Rue Guynemer", CodePostal = 76350, Commune = "Oissel" };
             ContactInfos contactInfos1 = new ContactInfos() { NumeroDeTelephone = "0671358282", AdresseMail = "papa@gmail.com", AdresseContact = adresseContact1 };
             Compte compte1 = new Compte() { Identifiant = "gueypelo1", MotDePasse = Dal.EncodeMD5("gyetef")};
-            Profil profil2 = new Profil() { Pseudo = "doug", Statut = "locataire" };
+  
             PersonnelInfos personnelInfos2 = new PersonnelInfos() { Nom = "MBA", Prenom = "Arsene", DateDeNaissance = new DateTime(2002, 09, 08, 15, 45, 54) };
             AdresseContact adresseContact2 = new AdresseContact() { NumeroDeLaRue = 15, NomDeLaRue = "Rue Loupin", CodePostal = 49000, Commune = "Angers" };
             ContactInfos contactInfos2 = new ContactInfos() { NumeroDeTelephone = "0698379899", AdresseMail = "arsene@gmail.com", AdresseContact = adresseContact2 };
             Compte compte2 = new Compte() { Identifiant = "dougmba02", MotDePasse =Dal.EncodeMD5 ("mba2002apt2")};
-       
+
+            PersonnelInfos personnelInfos3 = new PersonnelInfos() { Nom = "ElHadj", Prenom = "Hideya", DateDeNaissance = new DateTime(2001, 07, 06, 15, 45, 54) };
+            AdresseContact adresseContact3 = new AdresseContact() { NumeroDeLaRue = 12, NomDeLaRue = "Rue Anatole", CodePostal = 92000, Commune = "Nanterre" };
+            ContactInfos contactInfos3 = new ContactInfos() { NumeroDeTelephone = "0698379898", AdresseMail = "hideya@gmail.com", AdresseContact = adresseContact2 };
+            Compte compte3 = new Compte() { Identifiant = "hydel01", MotDePasse = Dal.EncodeMD5("hydel01") };
 
 
-                Utilisateur utilisateur1 = new Utilisateur() { Profil = profil1, PersonnelInfos = personnelInfos1, ContactInfos = contactInfos1, Compte = compte1 };
-            Utilisateur utilisateur2 = new Utilisateur() { Profil = profil2, PersonnelInfos = personnelInfos2, ContactInfos = contactInfos2, Compte = compte2};
+
+            Utilisateur utilisateur1 = new Utilisateur() { Pseudo = "gueyepa", PersonnelInfos = personnelInfos1, ContactInfos = contactInfos1, Compte = compte1, Role = Role.Admin };
+            Utilisateur utilisateur2 = new Utilisateur() { Pseudo = "doug", PersonnelInfos = personnelInfos2, ContactInfos = contactInfos2, Compte = compte2, Role = Role.Locataire};
+            Utilisateur utilisateur3 = new Utilisateur() { Pseudo = "elhadj12", PersonnelInfos = personnelInfos3, ContactInfos = contactInfos3, Compte = compte3, Role = Role.Proprietaire };
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
             this.Utilisateur.AddRange(
                new Utilisateur
                {
                    Id = 1,
-                   Profil = profil1,
+                   Pseudo = "gueyepa",
                    ContactInfos = contactInfos1,
                    PersonnelInfos = personnelInfos1,
                    Compte = compte1,
-                   //PrestationDeService = prestationDeService1
+
                },
                new Utilisateur
                {
                    Id = 2,
-                   Profil = profil2,
+                   Pseudo = "doug",
                    ContactInfos = contactInfos2,
                    PersonnelInfos = personnelInfos2,
                    Compte = compte2,
-                   //PrestationDeService = prestationDeService2
+
+               },
+               new Utilisateur
+               {
+                   Id = 3,
+                   Pseudo = "elhadj12",
+                   ContactInfos = contactInfos3,
+                   PersonnelInfos = personnelInfos3,
+                   Compte = compte3,
+
                }
             );
             this.PrestationDeServices.AddRange(
@@ -94,6 +108,34 @@ namespace LocHelp.Models
                         ImagePath = "/images/"
                     }
 
+                );
+            this.Reglement.AddRange(
+            new Reglement
+            {
+                Id = 1,
+                TypeCharges = TypeCharges.Loyer,
+                NomDestinataire = "ElHadj",
+                PrenomDestinataire = "Hideya",
+                SoldeAPayer = 810,
+                Reference = 12202,
+                NumeroAppartement = 01,
+                DateEmission = DateTime.Now,
+                DateDeReglement = DateTime.Now,
+
+            },
+
+                  new Reglement
+                  {
+                      Id = 2,
+                      TypeCharges = TypeCharges.ChargesAnnuelles,
+                      NomDestinataire = "MBA",
+                      PrenomDestinataire = "Arsene",
+                      SoldeAPayer = 235,
+                      Reference = 21532,
+                      NumeroAppartement = 02,
+                      DateEmission = DateTime.Now,
+                      DateDeReglement = DateTime.Now,
+                  }
                 );
             this.SaveChanges();
          

@@ -22,7 +22,7 @@ namespace LocHelp.Controllers.home
         }
         public ActionResult Prestation()
         {
-            List<PrestationDeService> listePrestations = dal.ObtientToutesLesPrestationsDeServices();
+            List<PrestationDeService> listePrestations = dal.ObtientToutesLesPrestationsDeService();
             return View(listePrestations);
         }
         public ActionResult CreerPrestation()
@@ -62,30 +62,19 @@ namespace LocHelp.Controllers.home
 
         }
 
-        [Authorize(Roles = "Locataire")]
+       
         public ActionResult ModifierPrestation(int? id)
         {
             if (id.HasValue)
             {
-                PrestationDeService prestationDeService = dal.ObtientToutesLesPrestationsDeServices().FirstOrDefault(r => r.Id == id.Value);
+                PrestationDeService prestationDeService = dal.ObtientToutesLesPrestationsDeService().FirstOrDefault(r => r.Id == id.Value);
                 if (prestationDeService == null)
                     return View("Error");
-
-                //string fileName = sejour.ImagePath.Split('/').Last();
-                //string uploads = Path.Combine(_webEnv.WebRootPath, "images");
-                //string filePath = Path.Combine(uploads, fileName);
-                //using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-                //{
-                //    var file = new FormFile(fileStream, 0, fileStream.Length, null, fileName);
-                //    sejour.Image = file;
-
-                //}
                 return View(prestationDeService);
             }
             else
                 return NotFound();
         }
-        [Authorize(Roles = "Locataire")]
 
         [HttpPost]
         public ActionResult ModifierPrestation(PrestationDeService prestationDeService)
@@ -116,11 +105,27 @@ namespace LocHelp.Controllers.home
             return RedirectToAction("Prestation");
         }
 
-        [Authorize(Roles = "Locataire")]
+        public ActionResult PayerPrestation(int? id)
+        {
+            PrestationDeService prestation = dal.ObtientToutesLesPrestationsDeService().FirstOrDefault(r => r.Id == id.Value);
+            ViewData["Prix"] = prestation.Tarif;
+            return View();
+        }
+
         public ActionResult Supprimer(int id)
         {
             dal.SupprimerPrestationDeService(id);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ReserverPrestation()
+        {
+            return View();
+        }
+
+        public ActionResult AccepterPrestation()
+        {
+            return View();
         }
 
     }

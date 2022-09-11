@@ -1,4 +1,4 @@
-﻿@model LocHelp.ViewModel.UtilisateurViewModel
+﻿@model LocHelp.Models.Utilisateur
 @{
     Layout = "~/Views/Shared/_LayoutLocHelp.cshtml";
 }
@@ -22,90 +22,102 @@
                     <fieldset id="formulaire">
                         <div class="row">
                             <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.Profil.Pseudo)
-                                @Html.TextBoxFor(m => Model.Utilisateur.Profil.Pseudo, new { @class = "form-contact", placeholder = "Pseudo" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.Profil.Pseudo)
+                                @Html.LabelFor(m => Model.Pseudo)
+                                @Html.TextBoxFor(m => Model.Pseudo, new { @class = "form-contact", placeholder = "Pseudo" })
+                                @Html.ValidationMessageFor(m => Model.Pseudo)
                             </div>
                             <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.Role)
-                                @Html.TextBoxFor(m => Model.Utilisateur.Role, new { @class = "form-contact", placeholder = "Role" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.Role)
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.PersonnelInfos.Nom)
-                                @Html.TextBoxFor(m => Model.Utilisateur.PersonnelInfos.Nom, new { @class = "form-contact", placeholder = "Nom" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.PersonnelInfos.Nom)
-                            </div>
-                            <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.PersonnelInfos.Prenom)
-                                @Html.TextBoxFor(m => Model.Utilisateur.PersonnelInfos.Prenom, new { @class = "form-contact", placeholder = "Prénom" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.PersonnelInfos.Prenom)
+                                @Html.LabelFor(m => Model.Role)
+                                @Html.TextBoxFor(m => Model.Role, new { @class = "form-contact", placeholder = "Role" })
+                                @Html.ValidationMessageFor(m => Model.Role)
                             </div>
                         </div>
                         <br />
                         <div class="row">
                             <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.PersonnelInfos.DateDeNaissance)
-                                @Html.TextBoxFor(m => Model.Utilisateur.PersonnelInfos.DateDeNaissance, new { @class = "form-contact", placeholder = "Date de naissance" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.PersonnelInfos.DateDeNaissance)
+                                @Html.LabelFor(m => Model.PersonnelInfos.Nom)
+                                @Html.TextBoxFor(m => Model.PersonnelInfos.Nom, new { @class = "form-contact", placeholder = "Nom" })
+                                @Html.ValidationMessageFor(m => Model.PersonnelInfos.Nom)
                             </div>
                             <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.ContactInfos.NumeroDeTelephone)
-                                @Html.TextBoxFor(m => Model.Utilisateur.ContactInfos.NumeroDeTelephone, new { @class = "form-contact", placeholder = "Numéro de téléphone" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.ContactInfos.NumeroDeTelephone)
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.ContactInfos.AdresseMail)
-                                @Html.TextBoxFor(m => Model.Utilisateur.ContactInfos.AdresseMail, new { @class = "form-contact", placeholder = "Mail" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.ContactInfos.AdresseMail)
-                            </div>
-                            <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue)
-                                @Html.TextBoxFor(m => Model.Utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue, new { @class = "form-contact", placeholder = "N° Rue" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue)
+                                @Html.LabelFor(m => Model.PersonnelInfos.Prenom)
+                                @Html.TextBoxFor(m => Model.PersonnelInfos.Prenom, new { @class = "form-contact", placeholder = "Prénom" })
+                                @Html.ValidationMessageFor(m => Model.PersonnelInfos.Prenom)
                             </div>
                         </div>
                         <br />
                         <div class="row">
                             <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.ContactInfos.AdresseContact.NomDeLaRue)
-                                @Html.TextBoxFor(m => Model.Utilisateur.ContactInfos.AdresseContact.NomDeLaRue, new { @class = "form-contact", placeholder = "Nom de la rue" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.ContactInfos.AdresseContact.NomDeLaRue)
+                                @Html.LabelFor(m => Model.PersonnelInfos.DateDeNaissance)
+                                @Html.TextBoxFor(m => Model.PersonnelInfos.DateDeNaissance, new { @class = "form-contact", placeholder = "Date de naissance" })
+                                @Html.ValidationMessageFor(m => Model.PersonnelInfos.DateDeNaissance)
                             </div>
                             <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.ContactInfos.AdresseContact.CodePostal)
-                                @Html.TextBoxFor(m => Model.Utilisateur.ContactInfos.AdresseContact.CodePostal, new { @class = "form-contact", placeholder = "Code postal" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.ContactInfos.AdresseContact.CodePostal)
+                                @Html.LabelFor(m => Model.ContactInfos.NumeroDeTelephone)
+                                @Html.TextBoxFor(m => Model.ContactInfos.NumeroDeTelephone, new { @class = "form-contact", placeholder = "Numéro de téléphone" })
+                                @Html.ValidationMessageFor(m => Model.ContactInfos.NumeroDeTelephone)
                             </div>
                         </div>
                         <br />
                         <div class="row">
                             <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.ContactInfos.AdresseContact.Commune)
-                                @Html.TextBoxFor(m => Model.Utilisateur.ContactInfos.AdresseContact.Commune, new { @class = "form-contact", placeholder = "Commune" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.ContactInfos.AdresseContact.Commune)
+                                @Html.LabelFor(m => Model.ContactInfos.AdresseMail)
+                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseMail, new { @class = "form-contact", placeholder = "Mail" })
+                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseMail)
                             </div>
                             <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.Compte.Identifiant)
-                                @Html.TextBoxFor(m => Model.Utilisateur.Compte.Identifiant, new { @class = "form-contact", placeholder = "Identifiant" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.Compte.Identifiant)
+                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.NumeroDeLaRue)
+                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.NumeroDeLaRue, new { @class = "form-contact", placeholder = "N° Rue" })
+                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.NumeroDeLaRue)
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.NomDeLaRue)
+                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.NomDeLaRue, new { @class = "form-contact", placeholder = "Nom de la rue" })
+                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.NomDeLaRue)
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.CodePostal)
+                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.CodePostal, new { @class = "form-contact", placeholder = "Code postal" })
+                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.CodePostal)
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.Commune)
+                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.Commune, new { @class = "form-contact", placeholder = "Commune" })
+                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.Commune)
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(m => Model.Compte.Identifiant)
+                                @Html.TextBoxFor(m => Model.Compte.Identifiant, new { @class = "form-contact", placeholder = "Identifiant" })
+                                @Html.ValidationMessageFor(m => Model.Compte.Identifiant)
                             </div>
                         </div>
                         <br />
                         <div class="row">
                             <div class="col-lg-12">
-                                @Html.LabelFor(m => Model.Utilisateur.Compte.MotDePasse)
-                                @Html.TextBoxFor(m => Model.Utilisateur.Compte.MotDePasse, new { @type = "password", @class = "form-contact", placeholder = "Mot de passe" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.Compte.MotDePasse)
+                                @Html.LabelFor(m => Model.Compte.MotDePasse)
+                                @Html.TextBoxFor(m => Model.Compte.MotDePasse, new { @type = "password", @class = "form-contact", placeholder = "Mot de passe" })
+                                @Html.ValidationMessageFor(m => Model.Compte.MotDePasse)
                             </div>
                         </div>
                         <br />
+                        @Html.HiddenFor(model => model.ImagePath)
+                        <div class="d-flex flex-row my-3">
+                            <div class="mb-3 d-flex">
+                                <div>
+                                    @Html.LabelFor(model => model.Image, new { id = "imageLabel", @style = "text-align:center;" })
+                                    @Html.TextBoxFor(model => model.Image, new { placeholder = "description", @type = "file" })
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <img src="@Model.ImagePath" height="50" width="50" />
+                            </div>
+                        </div>
                         <input type="submit" class="button1" value="Mofifier un utilisateur" />
                     </fieldset>
                 }
