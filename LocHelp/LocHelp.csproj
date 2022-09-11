@@ -19,9 +19,11 @@
     <Folder Include="wwwroot\assets\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Reglement\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Views\Admin\" />
+    <None Remove="Views\Reglement\" />
   </ItemGroup>
 </Project>

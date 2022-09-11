@@ -72,22 +72,20 @@ namespace LocHelp.Controllers.home
         {
             if (ModelState.IsValid)
             {
-                Utilisateur userCreated = dal.CreerUtilisateur(utilisateur.Profil.Pseudo, utilisateur.Profil.Statut , utilisateur.PersonnelInfos.Nom,utilisateur.PersonnelInfos.Prenom,utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone , utilisateur.ContactInfos.AdresseMail , utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue , utilisateur.ContactInfos.AdresseContact.NomDeLaRue , utilisateur.ContactInfos.AdresseContact.CodePostal , utilisateur.ContactInfos.AdresseContact.Commune , utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse);
+                Utilisateur userCreated = dal.CreerUtilisateur(utilisateur.Pseudo, utilisateur.PersonnelInfos.Nom,utilisateur.PersonnelInfos.Prenom,utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone , utilisateur.ContactInfos.AdresseMail , utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue , utilisateur.ContactInfos.AdresseContact.NomDeLaRue , utilisateur.ContactInfos.AdresseContact.CodePostal , utilisateur.ContactInfos.AdresseContact.Commune , utilisateur.ImagePath, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, utilisateur.Role);
 
                 var userClaims = new List<Claim>()
                     {
-                        new Claim(ClaimTypes.Name, userCreated.PersonnelInfos.Nom),
-                        new Claim(ClaimTypes.Name, userCreated.PersonnelInfos.Prenom),
-                         new Claim(ClaimTypes.Name, userCreated.Profil.Pseudo),
-                         new Claim(ClaimTypes.Name, userCreated.Profil.Statut),
-                        // new Claim(ClaimTypes.DateOfBirth, userCreated.PersonnelInfos.DateDeNaissance),
-                        new Claim(ClaimTypes.Name, userCreated.ContactInfos.NumeroDeTelephone),
-                        new Claim(ClaimTypes.Email, userCreated.ContactInfos.AdresseMail),
-                        new Claim(ClaimTypes.Name, userCreated.ContactInfos.AdresseContact.NomDeLaRue),
-                       // new Claim(ClaimTypes.Name, userCreated.ContactInfos.AdresseContact.NumeroDeLaRue),
-                       new Claim(ClaimTypes.Name, userCreated.ContactInfos.AdresseContact.Commune),
-                        new Claim(ClaimTypes.NameIdentifier, userCreated.Id.ToString()),
-                        //new Claim(ClaimTypes.Role, userCreated.Role.ToString())
+                    //    new Claim(ClaimTypes.Name, userCreated.PersonnelInfos.Nom),
+                    //    new Claim(ClaimTypes.Name, userCreated.PersonnelInfos.Prenom),
+                    //     new Claim(ClaimTypes.Name, userCreated.Pseudo),
+                    //    new Claim(ClaimTypes.Name, userCreated.ContactInfos.NumeroDeTelephone),
+                    //    new Claim(ClaimTypes.Email, userCreated.ContactInfos.AdresseMail),
+                    //    new Claim(ClaimTypes.Name, userCreated.ContactInfos.AdresseContact.NomDeLaRue),
+                    //   new Claim(ClaimTypes.Name, userCreated.ContactInfos.AdresseContact.Commune),
+                     new Claim(ClaimTypes.Name, userCreated.Compte.Identifiant),
+                     new Claim(ClaimTypes.NameIdentifier, userCreated.Id.ToString()),
+                     new Claim(ClaimTypes.Role, userCreated.Role.ToString())
                     };
 
                 var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
