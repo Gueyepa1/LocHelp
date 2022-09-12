@@ -102,20 +102,10 @@ namespace LocHelp.Models
         public Utilisateur CreerUtilisateur( string pseudo, string statut, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTel, string adresseMail, int numeroRue, string nomRue, int codePostal, string commune,string identifiant,string motDepasse, Role role = Role.Locataire)
         {
             Profil profil = new Profil() { Pseudo = pseudo, Statut = statut };
-            _bddContext.Profil.Add(profil);
-            _bddContext.SaveChanges();
             PersonnelInfos personnelInfos = new PersonnelInfos() { Nom = nom, Prenom = prenom, DateDeNaissance = dateDeNaissance };
-            _bddContext.PersonnelInfos.Add(personnelInfos);
-            _bddContext.SaveChanges();
             AdresseContact adresseContact = new AdresseContact() { NumeroDeLaRue = numeroRue, NomDeLaRue = nomRue, CodePostal = codePostal, Commune = commune };
-            _bddContext.AdresseContact.Add(adresseContact);
-            _bddContext.SaveChanges();
             ContactInfos contactInfos = new ContactInfos() { NumeroDeTelephone = numeroDeTel, AdresseMail = adresseMail, AdresseContact = adresseContact };
-            _bddContext.ContactInfos.Add(contactInfos);
-            _bddContext.SaveChanges();
             Compte compte = new Compte() { Identifiant = identifiant, MotDePasse = motDepasse };
-            _bddContext.Compte.Add(compte);
-            _bddContext.SaveChanges();
             Utilisateur utilisateur = new Utilisateur() {Role=role, Profil = profil, PersonnelInfos = personnelInfos, ContactInfos = contactInfos };
             _bddContext.Utilisateur.Add(utilisateur);
             _bddContext.SaveChanges();
