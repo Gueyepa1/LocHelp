@@ -16,74 +16,80 @@
     <link href="~/css/my-added-style.css" rel="stylesheet" />
 </head>
 <body id="page-top">
-
     <div class="d-flex flex-column justify-content-between vh-100">
-
         <div>
-            <!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-success text-uppercase fixed-top" id="mainNav">
+            <!--Barre de navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-success text-uppercase fixed-top" id="mainNav">
                 <div class="container">
 
-                   <a class="navbar-brand" href="#">
-                    <img src="/images/Lochelp.gif" alt="LocHelp" width="15" height="15" class="img-thumbnail d-inline-block align-text-center">
-                LocHelp
-                   </a>
-                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              
-                  
                     @{
                         if (User.Identity.IsAuthenticated)
                         {
-                            <a class="navbar-brand" href="#page-top">/*Bonjour @User.Identity.Name*/</a>
-                            
-             
-                  //  <a class="nav-link active" aria-current="page" href="#">Bonjour</a>
-                  
-
+                            <a class="navbar-brand" href="#page-top">
+                                <img src="/images/Lochelp.gif" alt="LocHelp" width="10%" height="10%" class="img-thumbnail d-inline-block align-text-center">
+                                LocHelp
+                            </a>
                         }
                         else
                         {
-                            <a class="navbar-brand" href="#page-top"></a>
+                            <a class="navbar-brand" href="#page-top">
+                                <img src="/images/Lochelp.gif" alt="LocHelp" width="6%" height="6%" class="img-thumbnail d-inline-block align-text-center">
+                                LocHelp
+                            </a>
                         }
-                    
                     }
                     <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         Menu
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul class="navbar-nav ms-auto">
 
                             @{
                                 if (User.Identity.IsAuthenticated)
                                 {
+                                    <li class="nav-item dropdown mx-0 mx-lg-1">
+                                        <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="/images/mbappe.jpeg" alt="Mbappe" width="20wv" height="20hv" class="d-inline-block align-text-center rounded-circle">
+                                            Bonjour @User.Identity.Name
+                                        </a>
+                                        <ul class="dropdown-menu me-auto mb-2 mb-lg-0" aria-labelledby="navbarDropdown">
+                                            <li><a class="dropdown-item py-1 px-0 px-lg-3 rounded" href="/Admin/Voir/"><i class="bi bi-person-circle"></i> Profil</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item py-1 px-0 px-lg-3 rounded" href="/Messagerie/Index"><i class="bi bi-person-lines-fill"></i> Contact</a></li>
+                                            <li><a class="dropdown-item py-1 px-0 px-lg-3 rounded" href="#"><i class="bi bi-people-fill"></i> Equipe</a></li>
+                                        </ul>
+                                    </li>
                                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/Home/Index">Accueil</a></li>
+                                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/Admin/Index">Administration</a></li>
+                                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/PrestationDeService/Prestation">Catalogue</a></li>
+                                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/Reglement/Reglement">Charges</a></li>
 
+<<<<<<< HEAD
                                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/PrestationDeService/Prestation">Catalogue de Prestation</a></li>
 
                                     
 
                                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/ListeDeDemande/ListeDeDemande">Liste de demande</a></li>
                                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/ProposerUnService/ProposerUnService">Proposer un service</a></li>
+=======
+>>>>>>> 8f7654d32d8ef8196010fd65e0b59cf46643052b
                                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/Login/Deconnexion">Déconnexion</a></li>
                                 }
                                 else
                                 {
                                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/Login/Index">Se Connecter</a></li>
-                                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/Login/CreerCompte">Créer un compte</a></li>
+                                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/Admin/Creer">Créer un compte</a></li>
+
                                 }
 
                             }
                         </ul>
-                      
-                    </div>
                     </div>
                 </div>
             </nav>
 
+<<<<<<< HEAD
            
             <div class="container-fluid">
                 <div class="row">
@@ -97,63 +103,70 @@
                             </div>
                         </section>
                     </main>
+=======
+
+            <!-- MainSection Section-->
+            <section class="page-section mt-5">
+                <div class="container">
+                    <!--Success Dialog Start-->
+                    <div id="myModalSuccess" class="modal fade text-width:30%;" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2> Information</h2>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div id="MyModalSuccessAlertBody" class="modal-body alert-success">
+                                    this is a modal Body
+                                </div>
+                                <div class="modal-footer">
+                                    &nbsp;
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    @RenderBody()
+>>>>>>> 8f7654d32d8ef8196010fd65e0b59cf46643052b
                 </div>
-            </div>
-                               
-           
-    
-
-
-
-
-
-
-            
-
+            </section>
 
         </div>
         <div>
-            <footer class="footer text-center">
+            <footer class="footer text-center success">
                 <div class="container">
                     <div class="row">
-                        <!-- Footer Location-->
-                        <div class="col-lg-4 mb-5 mb-lg-0">
+                        <!--Footer Location-->
+                        <div class="col-lg-6 mb-5 mb-lg-0">
                             <h4 class="text-uppercase mb-4">Location</h4>
                             <p class="lead mb-0">
-                                4 Rue Jeanne d'Arc
+                                4 Avenue de la réussite
                                 <br />
-                                44000 Nantes
+                                92800 Isika
                             </p>
                         </div>
-                        <!-- Footer Social Icons-->
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <h4 class="text-uppercase mb-4">Around the Web</h4>
+                        <!--Footer Social Icons-->
+                        <div class="col-lg-6 mb-5 mb-lg-0">
+                            <h4 class="text-uppercase mb-4">LocHelp Social Network</h4>
                             <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
                             <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
                             <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
                             <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
                         </div>
-                        <!-- Footer About Text-->
-                        <div class="col-lg-4">
-                            <h4 class="text-uppercase mb-4">About Choix Sejour App</h4>
-                            <p class="lead mb-0">
-                                Freelance is a free to use, MIT licensed Bootstrap theme created by
-                                <a href="http://startbootstrap.com">Start Bootstrap</a>
-                                .
-                            </p>
-                        </div>
                     </div>
                 </div>
             </footer>
             <!-- Copyright Section-->
-            <div class="copyright py-4 text-center text-white">
-                <div class="container"><small>Copyright &copy; Your Website 2021</small></div>
+            <div class="copyright py-4 text-center text-white success">
+                <div class="container"><small>Copyright &copy;  @DateTime.Now.Year - LocHelp</small></div>
             </div>
         </div>
     </div>
-   
 
-    
+
+
     <script src="~/js/jquery-3.6.0.js"></script>
     <script src="~/js/jquery.validate-vsdoc.js"></script>
     <script src="~/js/jquery.validate.unobtrusive.js"></script>
@@ -161,6 +174,7 @@
     <script src="~/js/bootstrap.bundle.js"></script>
     <!-- Core theme JS-->
     <script src="~/js/scripts.js"></script>
-    @RenderSection("Scripts", required:false)
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>

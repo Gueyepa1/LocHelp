@@ -35,72 +35,105 @@ namespace LocHelp.Controllers
             return View();
         }
 
-        public IActionResult Voir()
-        {
-            return View();
-        }
-
-        public IActionResult Supprimer()
-        {
-            return View();
-        }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Creer(Utilisateur utilisateur)
         {
-            if (dal.UtilisateurExiste(utilisateur.Profil.Pseudo))
+            if (dal.UtilisateurExiste(utilisateur.Pseudo))
             {
                 ModelState.AddModelError("Pseudo", "Ce pseudo existe déjà");
                 return View(utilisateur);
             }
             if (!ModelState.IsValid)
                 return View(utilisateur);
-            dal.CreerUtilisateur(utilisateur.Profil.Pseudo, utilisateur.Profil.Statut, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.Prenom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone, utilisateur.ContactInfos.AdresseMail, utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue, utilisateur.ContactInfos.AdresseContact.NomDeLaRue, utilisateur.ContactInfos.AdresseContact.CodePostal, utilisateur.ContactInfos.AdresseContact.Commune, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, Role.Locataire);
+            dal.CreerUtilisateur(utilisateur.Pseudo, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.Prenom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone, utilisateur.ContactInfos.AdresseMail, utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue, utilisateur.ContactInfos.AdresseContact.NomDeLaRue, utilisateur.ContactInfos.AdresseContact.CodePostal, utilisateur.ContactInfos.AdresseContact.Commune,utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, utilisateur.ImagePath, utilisateur.Role);
             return RedirectToAction("Index");
         }
 
-        //public ActionResult Modifier(int? id)
-        //{
-        //    if (id.HasValue)
-        //    {
-        //        Utilisateur utilisateur = dal.ObtientTousLesUtilisateurs().FirstOrDefault(r => r.Id == id.Value);
-        //        if (utilisateur == null)
-        //            return View("Error");
-        //        return View(utilisateur);
-        //    }
-        //    else
-        //        return NotFound();
-        //}
+        public ActionResult Modifier(int? id)
+        {
+            if (id.HasValue)
+            {
+                Utilisateur utilisateur = dal.ObtientTousLesUtilisateurs().FirstOrDefault(r => r.Id == id.Value);
+                if (utilisateur == null)
+                    return View("Error");
+                return View(utilisateur);
+            }
+            else
+                return NotFound();
+        }
 
-        //[HttpPost]
-        //public IActionResult Modifier(Utilisateur utilisateur)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View(utilisateur);
+        public ActionResult Voir(int? id)
+        {
+            if (id.HasValue)
+            {
+                Utilisateur utilisateur = dal.ObtientTousLesUtilisateurs().FirstOrDefault(r => r.Id == id.Value);
+                if (utilisateur == null)
+                    return View("Error");
+                return View(utilisateur);
+            }
+            else
+                return NotFound();
+        }
 
-
-        //    if (utilisateur.Image != null)
-        //    {
-        //        if (utilisateur.Image.Length != 0)
-        //        {
-        //            string uploads = Path.Combine(_webEnvironment.WebRootPath, "images");
-        //            string filPath = Path.Combine(uploads, utilisateur.Image.FileName);
-        //            using (Stream fileStream = new FileStream(filPath, FileMode.Create))
-        //            {
-        //                utilisateur.Image.CopyTo(fileStream);
-        //            }
-        //            dal.ModifierUtilisateur(utilisateur.Id, utilisateur.Profil.Pseudo, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.PersonnelInfos.Prenom, utilisateur.ContactInfos.NumeroDeTelepehone, utilisateur.ContactInfos.AdresseMail, utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue, utilisateur.ContactInfos.AdresseContact.NomDeLarue, utilisateur.ContactInfos.AdresseContact.CodePostal, utilisateur.ContactInfos.AdresseContact.Commune, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, "/images/" + utilisateur.Image.FileName);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        dal.ModifierUtilisateur(utilisateur.Id, utilisateur.Profil.Pseudo, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.PersonnelInfos.Prenom, utilisateur.ContactInfos.NumeroDeTelepehone, utilisateur.ContactInfos.AdresseMail, utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue, utilisateur.ContactInfos.AdresseContact.NomDeLarue, utilisateur.ContactInfos.AdresseContact.CodePostal, utilisateur.ContactInfos.AdresseContact.Commune, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, utilisateur.ImagePath);
-        //    }
-        //    return RedirectToAction("Index");
-
-        //}
+        [HttpPost]
+        public IActionResult Voir(Utilisateur utilisateur)
+        {
+            if (!ModelState.IsValid)
+                return View(utilisateur);
 
 
-        [Authorize(Roles = "Locataire")]
+            if (utilisateur.Image != null)
+            {
+                if (utilisateur.Image.Length != 0)
+                {
+                    string uploads = Path.Combine(_webEnvironment.WebRootPath, "images");
+                    string filPath = Path.Combine(uploads, utilisateur.Image.FileName);
+                    using (Stream fileStream = new FileStream(filPath, FileMode.Create))
+                    {
+                        utilisateur.Image.CopyTo(fileStream);
+                    }
+                    dal.ModifierUtilisateur(utilisateur.Id, utilisateur.Pseudo, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.Prenom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone, utilisateur.ContactInfos.AdresseMail, utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue, utilisateur.ContactInfos.AdresseContact.NomDeLaRue, utilisateur.ContactInfos.AdresseContact.CodePostal, utilisateur.ContactInfos.AdresseContact.Commune, "/images/" + utilisateur.Image.FileName, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse);
+                }
+            }
+            else
+            {
+                dal.ModifierUtilisateur(utilisateur.Id, utilisateur.Pseudo, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.Prenom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone, utilisateur.ContactInfos.AdresseMail, utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue, utilisateur.ContactInfos.AdresseContact.NomDeLaRue, utilisateur.ContactInfos.AdresseContact.CodePostal, utilisateur.ContactInfos.AdresseContact.Commune,utilisateur.ImagePath, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse);
+            }
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpPost]
+        public IActionResult Modifier(Utilisateur utilisateur)
+        {
+            if (!ModelState.IsValid)
+                return View(utilisateur);
+
+
+            if (utilisateur.Image != null)
+            {
+                if (utilisateur.Image.Length != 0)
+                {
+                    string uploads = Path.Combine(_webEnvironment.WebRootPath, "images");
+                    string filPath = Path.Combine(uploads, utilisateur.Image.FileName);
+                    using (Stream fileStream = new FileStream(filPath, FileMode.Create))
+                    {
+                        utilisateur.Image.CopyTo(fileStream);
+                    }
+                    dal.ModifierUtilisateur(utilisateur.Id, utilisateur.Pseudo, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.Prenom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone, utilisateur.ContactInfos.AdresseMail, utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue, utilisateur.ContactInfos.AdresseContact.NomDeLaRue, utilisateur.ContactInfos.AdresseContact.CodePostal, utilisateur.ContactInfos.AdresseContact.Commune, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, "/images/" + utilisateur.Image.FileName);
+                }
+            }
+            else
+            {
+                dal.ModifierUtilisateur(utilisateur.Id, utilisateur.Pseudo, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.Prenom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone, utilisateur.ContactInfos.AdresseMail, utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue, utilisateur.ContactInfos.AdresseContact.NomDeLaRue, utilisateur.ContactInfos.AdresseContact.CodePostal, utilisateur.ContactInfos.AdresseContact.Commune, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, utilisateur.ImagePath);
+            }
+            return RedirectToAction("Index");
+
+        }
+
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Supprimer(int id)
         {
             dal.SupprimerUtilisateur(id);

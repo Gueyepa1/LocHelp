@@ -19,9 +19,14 @@
     <Folder Include="wwwroot\assets\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Reglement\" />
+
+    <Folder Include="Views\Messagerie\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Views\Admin\" />
+    <None Remove="Views\Reglement\" />
+    <None Remove="Views\Messagerie\" />
   </ItemGroup>
 </Project>

@@ -1,11 +1,16 @@
+<<<<<<< HEAD
 ﻿
 using System;
 using System.Net;
 using System.Net.Mail;
+=======
+﻿using System;
+>>>>>>> 8f7654d32d8ef8196010fd65e0b59cf46643052b
 namespace LocHelp.Models
 {
     public class Messagerie
     {
+<<<<<<< HEAD
         public string From { get; set; }
         public string To { get; set; }
         public string Subject { get; set; }
@@ -26,6 +31,12 @@ namespace LocHelp.Models
         //    smtp.Credentials = nc;
         //    smtp.Send(mc);
         //}
+=======
+        public string De { get; set; }
+        public string A { get; set; }
+        public string Objet { get; set; }
+        public string Contenu { get; set; }
+>>>>>>> 8f7654d32d8ef8196010fd65e0b59cf46643052b
     }
 }
 

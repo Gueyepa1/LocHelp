@@ -1,14 +1,20 @@
-﻿namespace LocHelp.Models
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace LocHelp.Models
 {
     public class Utilisateur
     {
         public int Id { get; set; }
 
+        [MaxLength(20)]
+        public string Pseudo { get; set; }
+
         public int? ContactInfosId { get; set; }
         public virtual ContactInfos ContactInfos { get; set; }
 
-        public int? ProfilId { get; set; }
-        public virtual Profil Profil { get; set; }
+        public int NumeroAppartement { get; set; }
 
         public int? PersonnelInfosId { get; set; }
         public virtual PersonnelInfos PersonnelInfos { get; set; }
@@ -18,9 +24,10 @@
         public virtual Compte Compte { get; set; }
         public Role Role { get; set; }
 
-        //public int? PrestationDeServiceId { get; set; }
+        public string ImagePath { get; set; }
 
-        //public virtual PrestationDeService PrestationDeService { get; set; }
+        [NotMapped]
+        public IFormFile Image { get; set; }
 
 
     }

@@ -1,0 +1,73 @@
+﻿@model LocHelp.Models.Reglement
+@{
+    Layout = "~/Views/Shared/_LayoutLocHelp.cshtml";
+}
+
+
+<section class="page-section portfolio mt-5">
+
+    <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Administration</h2>
+        <!--Icon Divider-->
+        <div>
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!--div pour mettre en colonne et centrer le contenu suivant l'horizontal-->
+        <div class="row justify-content-center">
+            <div class="col-lg-10 offset-lg-1">
+                @using (Html.BeginForm("Modifier", "Reglement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <fieldset id="formulaire">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @Html.DropDownListFor(m => Model.TypeCharges, Html.GetEnumSelectList<LocHelp.Models.TypeCharges>())
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.DropDownListFor(m => Model.TypeReglement, Html.GetEnumSelectList<LocHelp.Models.TypeReglement>())
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(m => Model.NomDestinataire)
+                                @Html.TextBoxFor(m => Model.NomDestinataire, new { @class = "form-contact", placeholder = "date de début" })
+                                @Html.ValidationMessageFor(m => Model.NomDestinataire)
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(m => Model.PrenomDestinataire)
+                                @Html.TextBoxFor(m => Model.PrenomDestinataire, new { @class = "form-contact", placeholder = "date de fin" })
+                                @Html.ValidationMessageFor(m => Model.PrenomDestinataire)
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(m => Model.DateEmission, new { @class = "form-contact", placeholder = "description" })
+                                @Html.LabelFor(m => Model.DateEmission)
+                                @Html.ValidationMessageFor(m => Model.DateEmission)
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(m => Model.DateDeReglement, new { @class = "form-contact", placeholder = "description" })
+                                @Html.LabelFor(m => Model.DateDeReglement)
+                                @Html.ValidationMessageFor(m => Model.DateDeReglement)
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-12">
+                                @Html.TextBoxFor(m => Model.SoldeAPayer, new { @class = "form-contact", placeholder = "description" })
+                                @Html.LabelFor(m => Model.SoldeAPayer)
+                                @Html.ValidationMessageFor(m => Model.SoldeAPayer)
+                            </div>
+                        </div>
+                        <br />
+                        <input type="submit" class="button1" value="Mofifier une charge à régler" />
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+
+</section>

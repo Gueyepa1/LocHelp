@@ -17,14 +17,14 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-10 offset-lg-1">
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Creer", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     <fieldset id="formulaire">
                         <div class="row">
                             <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.Utilisateur.Profil.Pseudo)
-                                @Html.TextBoxFor(m => Model.Utilisateur.Profil.Pseudo, new { @class = "form-contact", placeholder = "Pseudo" })
-                                @Html.ValidationMessageFor(m => Model.Utilisateur.Profil.Pseudo)
+                                @Html.LabelFor(m => Model.Utilisateur.Pseudo)
+                                @Html.TextBoxFor(m => Model.Utilisateur.Pseudo, new { @class = "form-contact", placeholder = "Pseudo" })
+                                @Html.ValidationMessageFor(m => Model.Utilisateur.Pseudo)
                             </div>
                             <div class="col-lg-6">
                                 @Html.LabelFor(m => Model.Utilisateur.Role)
@@ -106,6 +106,16 @@
                             </div>
                         </div>
                         <br />
+                        @Html.HiddenFor(model => model.Utilisateur.ImagePath)
+                        <div class="d-flex flex-row my-3">
+                            <div class="mb-3 d-flex">
+                                <div>
+                                    @Html.LabelFor(model => model.Utilisateur.Image, new { id = "imageLabel", @style = "text-align:center;" })
+                                    @Html.TextBoxFor(model => model.Utilisateur.Image, new { placeholder = "Description", @type = "file" })
+
+                                </div>
+                            </div>
+                        </div>
                         <input type="submit" class="button1" value="Créer un utilisateur" />
                     </fieldset>
                 }

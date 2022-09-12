@@ -7,7 +7,6 @@ namespace LocHelp.ViewModel
     {
         public string Message { get; set; }
         public DateTime Date { get; set; }
-        public Profil Profil { get; set; }
         public ContactInfos ContactInfos { get; set; }
         public PersonnelInfos PersonnelInfos { get; set; }
 

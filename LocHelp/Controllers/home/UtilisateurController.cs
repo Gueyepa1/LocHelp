@@ -47,6 +47,6 @@ namespace LocHelp.Controllers.home
                 return View("Error");
             }
         }
-
+       
     }
 }
