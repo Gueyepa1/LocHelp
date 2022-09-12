@@ -1,0 +1,79 @@
+﻿@model LocHelp.Models.Messagerie
+
+@{
+    Layout = "~/Views/Shared/_LayoutLocHelp.cshtml";
+}
+
+<h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact</h2>
+<!-- Icon Divider-->
+<div class="divider-custom">
+    <div class="divider-custom-line"></div>
+    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+    <div class="divider-custom-line"></div>
+</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/js/jquery-3.6.0.js"></script>
+<script type="text/javascript">$(document).ready(function () {
+    $("#btnEnvoyer").click(function () {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Votre message a bien été envoyé. Merci et à bientot!'
+        })
+        });
+    });</script>
+
+@using (Html.BeginForm("Index", "Messagerie", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div id="formulaire" class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.De, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => model.De, new { htmlAttributes = new { @class = "form-contact" } })
+                @Html.ValidationMessageFor(model => model.De, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Objet, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => model.Objet, new { htmlAttributes = new { @class = "form-contact" } })
+                @Html.ValidationMessageFor(model => model.Objet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contenu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => model.Contenu, new { htmlAttributes = new { @class = "form-contact" } })
+                @Html.ValidationMessageFor(model => model.Contenu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Envoyer" class="button1" name="Envoyer" id="btnEnvoyer" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+
