@@ -58,8 +58,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Contenu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-offset-2 col-md-10">
-                @Html.EditorFor(model => model.Contenu, new { htmlAttributes = new { @class = "form-contact" } })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Contenu, new { htmlAttributes = new { @class = "form-contact" } })
                 @Html.ValidationMessageFor(model => model.Contenu, "", new { @class = "text-danger" })
             </div>
         </div>

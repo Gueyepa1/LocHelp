@@ -6,47 +6,61 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 
 namespace LocHelp.Controllers.home
 {
     public class UtilisateurController : Controller
     {
-
-        [HttpGet]
-        public IActionResult ModifierUtilisateur(int id)
+        private IDal dal;
+        private IWebHostEnvironment _webEnvironment;
+        public UtilisateurController(IWebHostEnvironment environment)
         {
-            if (id != 0)
-            {
-                using (Dal dal = new Dal())
-                {
-                    Utilisateur utilisateur = dal.ObtientTousLesUtilisateurs().Where(r => r.Id == id).FirstOrDefault();
-                    if (utilisateur == null)
-                    {
-                        return View("Error");
-                    }
-                    return View(utilisateur);
-                }
-            }
-            return View("Error");
+            _webEnvironment = environment;
+            this.dal = new Dal();
         }
-        [HttpPost]
-        public IActionResult ModifierUtilisateur(Utilisateur utilisateur)
+        public ActionResult Modifier()
         {
-          
-
-            if (utilisateur.Id != 0)
+            int UserId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            if (UserId != 0)
             {
-                using (Dal dal = new Dal())
-                {
-                    dal.ModifierUtilisateur( utilisateur);
-                    return RedirectToAction("ModifierUtilisateur", new { @id = utilisateur.Id });
-                }
+                Utilisateur utilisateur = dal.ObtientTousLesUtilisateurs().FirstOrDefault(r => r.Id == UserId);
+                if (utilisateur == null)
+                    return View("Error");
+                return View(utilisateur);
             }
             else
-            {
-                return View("Error");
-            }
+                return NotFound();
         }
-       
+
+        [HttpPost]
+        public IActionResult Modifier(Utilisateur utilisateur)
+        {
+            int UserId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            if (!ModelState.IsValid)
+                return View(utilisateur);
+
+
+            //if (utilisateur.Image != null)
+            //{
+            //    if (utilisateur.Image.Length != 0)
+            //    {
+            //        string uploads = Path.Combine(_webEnvironment.WebRootPath, "images");
+            //        string filPath = Path.Combine(uploads, utilisateur.Image.FileName);
+            //        using (Stream fileStream = new FileStream(filPath, FileMode.Create))
+            //        {
+            //            utilisateur.Image.CopyTo(fileStream);
+            //        }
+            //        dal.ModifierUtilisateur(utilisateur.Id, utilisateur.Pseudo, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.Prenom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone, utilisateur.ContactInfos.AdresseMail, utilisateur.NumeroAppartement, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, "/images/" + utilisateur.Image.FileName, utilisateur.Role);
+            //    }
+            //}
+            //else
+            //{
+                dal.ModifierUtilisateur(utilisateur.Id, utilisateur.Pseudo, utilisateur.PersonnelInfos.Nom, utilisateur.PersonnelInfos.Prenom, utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone, utilisateur.ContactInfos.AdresseMail, utilisateur.NumeroAppartement, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, utilisateur.Role);
+            //}
+            return RedirectToAction("Index");
+
+        }
+
     }
 }

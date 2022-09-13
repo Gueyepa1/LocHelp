@@ -71,12 +71,12 @@ namespace LocHelp.Models
         }
         public List<Utilisateur> ObtientTousLesUtilisateurs()
         {
-            return _bddContext.Utilisateur.Include(u => u.ContactInfos).Include(u => u.PersonnelInfos).Include(u => u.ContactInfos.AdresseContact).Include(u => u.Compte).ToList();
+            return _bddContext.Utilisateur.Include(u => u.ContactInfos).Include(u => u.PersonnelInfos).Include(u => u.Compte).ToList();
         }
 
         public Utilisateur ObtenirUtilisateur(int id)
         {
-            return this._bddContext.Utilisateur.Include(u => u.ContactInfos).Include(u => u.PersonnelInfos).Include(u => u.ContactInfos.AdresseContact).Include(u => u.Compte).FirstOrDefault(u => u.Id == id);
+            return this._bddContext.Utilisateur.Include(u => u.ContactInfos).Include(u => u.PersonnelInfos).Include(u => u.Compte).FirstOrDefault(u => u.Id == id);
         }
         public Utilisateur ObtenirUtilisateur(string idStr)
         {
@@ -101,58 +101,31 @@ namespace LocHelp.Models
             Utilisateur user = this._bddContext.Utilisateur.Include(u=>u.Compte).FirstOrDefault(u => u.Compte.Identifiant == identifiant && u.Compte.MotDePasse == motDePasse);
             return user;
         }
-        //public Utilisateur CreerUtilisateur( string pseudo, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTel, string adresseMail, int numeroRue, string nomRue, int codePostal, string commune,string identifiant,string motDepasse, Role role = Role.Locataire)
-        //{
-        //    _bddContext.SaveChanges();
-        //    PersonnelInfos personnelInfos = new PersonnelInfos() { Nom = nom, Prenom = prenom, DateDeNaissance = dateDeNaissance };
-        //    _bddContext.PersonnelInfos.Add(personnelInfos);
-        //    _bddContext.SaveChanges();
-        //    AdresseContact adresseContact = new AdresseContact() { NumeroDeLaRue = numeroRue, NomDeLaRue = nomRue, CodePostal = codePostal, Commune = commune };
-        //    _bddContext.AdresseContact.Add(adresseContact);
-        //    _bddContext.SaveChanges();
-        //    ContactInfos contactInfos = new ContactInfos() { NumeroDeTelephone = numeroDeTel, AdresseMail = adresseMail, AdresseContact = adresseContact };
-        //    _bddContext.ContactInfos.Add(contactInfos);
-        //    _bddContext.SaveChanges();
-        //    Compte compte = new Compte() { Identifiant = identifiant, MotDePasse = motDepasse };
-        //    _bddContext.Compte.Add(compte);
-        //    _bddContext.SaveChanges();
-        //    Utilisateur utilisateur = new Utilisateur() {Role=role, Pseudo = pseudo, PersonnelInfos = personnelInfos, ContactInfos = contactInfos };
-        //    _bddContext.Utilisateur.Add(utilisateur);
-        //    _bddContext.SaveChanges();
+      
 
-        //    return utilisateur;
-        //}
-        
-        public void ModifierUtilisateur(Utilisateur utilisateur)
-        {
-
-            _bddContext.Utilisateur.Update(utilisateur);
-            _bddContext.SaveChanges();
-
-        }
 
         public void SupprimerUtilisateur(int id)
         {
             Utilisateur utilisateurASupprimer = this._bddContext.Utilisateur.Find(id);
-            _bddContext.Utilisateur.Update(utilisateurASupprimer);
+            _bddContext.Utilisateur.Remove(utilisateurASupprimer);
             _bddContext.SaveChanges();
         }
 
-        public void SupprimerUtilisateur(string pseudo, string nom, DateTime dateDeNaissance, string prenom, string numeroDeTelephone, string adresseMail, int numeroDeLaRue, string nomDeLaRue, int codePostal, string commune, string identifiant, string motDePasse)
+        public void SupprimerUtilisateur(string pseudo, string nom, DateTime dateDeNaissance, string prenom, string numeroDeTelephone, string adresseMail, int numeroAppartement, string identifiant, string motDePasse, Role role)
         {
             Utilisateur utilisateurASupprimer = this._bddContext.Utilisateur.Where(r => r.PersonnelInfos.Nom == nom && r.PersonnelInfos.Prenom == prenom).FirstOrDefault();
             if (utilisateurASupprimer != null)
             {
-                _bddContext.Utilisateur.Update(utilisateurASupprimer);
+                _bddContext.Utilisateur.Remove(utilisateurASupprimer);
                 _bddContext.SaveChanges();
             }
         }
 
 
-        public bool UtilisateurExiste(string numeroDeTelephone)
+        public bool UtilisateurExiste(string pseudo)
         {
             return _bddContext.Utilisateur.ToList().Any(utilisateur =>
-            string.Compare(utilisateur.ContactInfos.NumeroDeTelephone, numeroDeTelephone,
+            string.Compare(utilisateur.Pseudo, pseudo,
             StringComparison.CurrentCultureIgnoreCase) == 0);
         }
 
@@ -213,28 +186,38 @@ namespace LocHelp.Models
             return _bddContext.Reglement.ToList().Any(reglement => string.Compare(reglement.NomDestinataire, nomDestinataire, StringComparison.CurrentCultureIgnoreCase) == 0);
         }
 
-        public Utilisateur CreerUtilisateur(string pseudo, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTelephone, string adresseMail, int numeroDeLaRue, string nomDeLaRue, int codePostal, string commune, string imagePath, string identifiant, string motDepasse, Role role = Role.Locataire)
+        public Utilisateur CreerUtilisateur(string pseudo, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTelephone, string adresseMail, int numeroAppartement, string identifiant, string motDepasse, Role role)
         {
             PersonnelInfos personnelInfos = new PersonnelInfos() { Nom = nom, Prenom = prenom, DateDeNaissance = dateDeNaissance };
             ContactInfos contactInfos = new ContactInfos() { NumeroDeTelephone = numeroDeTelephone, AdresseMail = adresseMail };
-            Compte compte = new Compte() { Identifiant = identifiant, MotDePasse = motDepasse };
-            Utilisateur utilisateur = new Utilisateur() { Pseudo = pseudo, PersonnelInfos = personnelInfos, ContactInfos = contactInfos, Compte = compte, ImagePath = imagePath, Role = role };
+            Compte compte = new Compte() { Identifiant = identifiant, MotDePasse = EncodeMD5(motDepasse) };
+            Utilisateur utilisateur = new Utilisateur() { Pseudo = pseudo, NumeroAppartement = numeroAppartement, PersonnelInfos = personnelInfos, ContactInfos = contactInfos, Compte = compte, Role = role };
             string password = EncodeMD5(motDepasse);
             this._bddContext.Utilisateur.Add(utilisateur);
             this._bddContext.SaveChanges();
             return utilisateur;
         }
 
-        public void ModifierUtilisateur(int id, string pseudo, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTelephone, string adresseMail, int numeroDeLaRue, string nomDeLaRue, int codePostal, string commune, string imagePath, string identifiant, string motDepasse)
+        public void ModifierUtilisateur(Utilisateur utilisateur)
         {
-            PersonnelInfos personnelInfos = new PersonnelInfos() { Nom = nom, Prenom = prenom };
+
+            _bddContext.Utilisateur.Update(utilisateur);
+            _bddContext.SaveChanges();
+
+        }
+
+        public void ModifierUtilisateur(int id, string pseudo, string nom, string prenom, DateTime dateDeNaissance, string numeroDeTelephone, string adresseMail, int numeroAppartement, string identifiant, string motDepasse, Role role)
+        {
+            PersonnelInfos personnelInfos = new PersonnelInfos() { Nom = nom, Prenom = prenom, DateDeNaissance = dateDeNaissance };
             ContactInfos contactInfos = new ContactInfos() { NumeroDeTelephone = numeroDeTelephone, AdresseMail = adresseMail };
-            Compte compte = new Compte() { Identifiant = identifiant, MotDePasse = motDepasse };
+            Compte compte = new Compte() { Identifiant = identifiant, MotDePasse = EncodeMD5(motDepasse) };
 
             Utilisateur utilisateur = _bddContext.Utilisateur.Find(id);
 
             if (utilisateur != null)
             {
+                utilisateur.Role = role;
+                utilisateur.NumeroAppartement = numeroAppartement;
                 utilisateur.Pseudo = pseudo;
                 utilisateur.PersonnelInfos = personnelInfos;
                 utilisateur.ContactInfos = contactInfos;

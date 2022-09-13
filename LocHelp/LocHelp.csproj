@@ -22,11 +22,13 @@
     <Folder Include="Views\Reglement\" />
 
     <Folder Include="Views\Messagerie\" />
+    <Folder Include="Views\Footer\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Views\Admin\" />
     <None Remove="Views\Reglement\" />
     <None Remove="Views\Messagerie\" />
+    <None Remove="Views\Footer\" />
   </ItemGroup>
 </Project>

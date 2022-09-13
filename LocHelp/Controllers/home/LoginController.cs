@@ -72,7 +72,7 @@ namespace LocHelp.Controllers.home
         {
             if (ModelState.IsValid)
             {
-                Utilisateur userCreated = dal.CreerUtilisateur(utilisateur.Pseudo, utilisateur.PersonnelInfos.Nom,utilisateur.PersonnelInfos.Prenom,utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone , utilisateur.ContactInfos.AdresseMail , utilisateur.ContactInfos.AdresseContact.NumeroDeLaRue , utilisateur.ContactInfos.AdresseContact.NomDeLaRue , utilisateur.ContactInfos.AdresseContact.CodePostal , utilisateur.ContactInfos.AdresseContact.Commune , utilisateur.ImagePath, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, utilisateur.Role);
+                Utilisateur userCreated = dal.CreerUtilisateur(utilisateur.Pseudo, utilisateur.PersonnelInfos.Nom,utilisateur.PersonnelInfos.Prenom,utilisateur.PersonnelInfos.DateDeNaissance, utilisateur.ContactInfos.NumeroDeTelephone , utilisateur.ContactInfos.AdresseMail , utilisateur.NumeroAppartement, utilisateur.Compte.Identifiant, utilisateur.Compte.MotDePasse, utilisateur.Role);
 
                 var userClaims = new List<Claim>()
                     {

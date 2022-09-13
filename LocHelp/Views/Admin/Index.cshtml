@@ -7,73 +7,63 @@
 
     <div class="container">
         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Administration</h2>
-        Icon Divider
+        <!--Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
             <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
             <div class="divider-custom-line"></div>
         </div>
         <div class="row justify-content-center">
-           
-                <div class="container admin">
-                    <div class="row">
-                        <h1 class="text-center"><strong>Liste des utilisateurs  </strong><a href="Admin insert.html" class="btn btn-success btn-lg"><span class="bi-plus"></span>Ajouter un utilisateur</a></h1>
-                        <br>
-                        <table class="table table-striped table-bordered text-center">
+
+            <div class="container admin">
+                <div class="row">
+                    <h1 class="text-center"><strong>Liste des utilisateurs  </strong></h1>
+                    <br>
+                    <table class="table table-striped table-bordered text-center">
+                        <tr>
+                            <th>Pseudo</th>
+                            <th>Role</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Date de naissance</th>
+                            <th>Tel</th>
+                            <th>Mail</th>
+                            <th>N° Appt</th>
+                            <th>Identifiant</th>
+                            <th>Mot de passe</th>
+                            <th>Actions</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
                             <tr>
-                                <th>Photo</th>
-                                <th>Pseudo</th>
-                                <th>Role</th>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Date de naissance</th>
-                                <th>Tel</th>
-                                <th>Mail</th>
-                                <th>N°</th>
-                                <th>Rue</th>
-                                <th>Code postal</th>
-                                <th>Commune</th>
-                                <th>Identifiant</th>
-                                <th>Mot de passe</th>
-                                <th>Actions</th>
+                                <td>@item.Pseudo</td>
+                                <td>@item.Role</td>
+                                <td>@item.PersonnelInfos.Nom</td>
+                                <td>@item.PersonnelInfos.Prenom</td>
+                                <td>@item.PersonnelInfos.DateDeNaissance</td>
+                                <td>@item.ContactInfos.NumeroDeTelephone</td>
+                                <td>@item.ContactInfos.AdresseMail</td>
+                                <td>@item.NumeroAppartement</td>
+                                <td>@item.Compte.Identifiant</td>
+                                <td>@item.Compte.MotDePasse</td>
+                                <td width="300">
+                                    <div class="d-flex flex-row-reverse bd-highlight">
+                                        <div class="p-2 bd-highlight"><a class="btn btn-danger" href=@("/Admin/Supprimer/"+ item.Id)><span class="bi-x"></span>Supprimer</a></div>
+                                        <div class="p-2 bd-highlight"><a class="btn btn-primary" href=@("/Admin/Modifier/"+ item.Id)><span class="bi-pencil"></span>Modifier</a></div>
+                                        <div class="p-2 bd-highlight"><a class="btn btn-secondary" href=@("/Admin/Voir/"+ item.Id)><span class="bi-eye"></span>Voir</a></div>
+
+                                    </div>
+                                </td>
                             </tr>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td width="100" height="100">
-                                        <div class="my-3">
-                                            <img src="@item.ImagePath" width="50" height="50" />
-                                        </div>
-                                    </td>
-                                    <td>@item.Pseudo</td>
-                                    <td>@item.Role</td>
-                                    <td>@item.PersonnelInfos.Nom</td>
-                                    <td>@item.PersonnelInfos.Prenom</td>
-                                    <td>@item.PersonnelInfos.DateDeNaissance</td>
-                                    <td>@item.ContactInfos.NumeroDeTelephone</td>
-                                    <td>@item.ContactInfos.AdresseMail</td>
-                                    <td>@item.ContactInfos.AdresseContact.NumeroDeLaRue</td>
-                                    <td>@item.ContactInfos.AdresseContact.NomDeLaRue</td>
-                                    <td>@item.ContactInfos.AdresseContact.CodePostal</td>
-                                    <td>@item.ContactInfos.AdresseContact.Commune</td>
-                                    <td>@item.Compte.Identifiant</td>
-                                    <td>@item.Compte.MotDePasse</td>
-                                    <td width="300">
-                                        <div class="d-flex flex-row-reverse bd-highlight">
-                                            <div class="p-2 bd-highlight"><a class="btn btn-danger" href=@("/Admin/Supprimer/"+ item.Id)><span class="bi-x"></span>Supprimer</a></div>
-                                            <div class="p-2 bd-highlight"><a class="btn btn-primary" href=@("/Admin/Modifier/"+ item.Id)><span class="bi-pencil"></span>Modifier</a></div>
-                                            <div class="p-2 bd-highlight"><a class="btn btn-secondary" href=@("/Admin/Voir/"+ item.Id)><span class="bi-eye"></span>Voir</a></div>
-
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
+                        }
 
 
-                        </table>
-                    </div>
-
+                    </table>
+                    <br />
+                    <a href="/Admin/Creer" class="btn btn-success btn-lg"><span class="bi-plus"></span>Ajouter un utilisateur</a>
                 </div>
+
             </div>
         </div>
+    </div>
 </section>

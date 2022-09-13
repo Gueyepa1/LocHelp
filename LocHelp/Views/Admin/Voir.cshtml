@@ -60,51 +60,30 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 @Html.LabelFor(m => Model.ContactInfos.AdresseMail)
-                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseMail, new { @class = "form-contact", placeholder = "Mail" })
+                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseMail, new { @type = "email", @class = "form-contact", placeholder = "Mail" })
                                 @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseMail)
                             </div>
                             <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.NumeroDeLaRue)
-                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.NumeroDeLaRue, new { @class = "form-contact", placeholder = "N° Rue" })
-                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.NumeroDeLaRue)
+                                @Html.LabelFor(m => Model.NumeroAppartement)
+                                @Html.TextBoxFor(m => Model.NumeroAppartement, new { @class = "form-contact", placeholder = "N° Appartement" })
+                                @Html.ValidationMessageFor(m => Model.NumeroAppartement)
                             </div>
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.NomDeLaRue)
-                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.NomDeLaRue, new { @class = "form-contact", placeholder = "Nom de la rue" })
-                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.NomDeLaRue)
-                            </div>
-                            <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.CodePostal)
-                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.CodePostal, new { @class = "form-contact", placeholder = "Code postal" })
-                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.CodePostal)
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.Commune)
-                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.Commune, new { @class = "form-contact", placeholder = "Commune" })
-                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.Commune)
-                            </div>
                             <div class="col-lg-6">
                                 @Html.LabelFor(m => Model.Compte.Identifiant)
                                 @Html.TextBoxFor(m => Model.Compte.Identifiant, new { @class = "form-contact", placeholder = "Identifiant" })
                                 @Html.ValidationMessageFor(m => Model.Compte.Identifiant)
                             </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 @Html.LabelFor(m => Model.Compte.MotDePasse)
                                 @Html.TextBoxFor(m => Model.Compte.MotDePasse, new { @type = "password", @class = "form-contact", placeholder = "Mot de passe" })
                                 @Html.ValidationMessageFor(m => Model.Compte.MotDePasse)
                             </div>
                         </div>
                         <br />
-                        @Html.HiddenFor(model => model.ImagePath)
+                        @*@Html.HiddenFor(model => model.ImagePath)
                         <div class="d-flex flex-row my-3">
                             <div class="mb-3 d-flex">
                                 <div>
@@ -113,7 +92,7 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                 <div class="p-2 bd-highlight"><a class="button1" href="/Admin/Index"><span class="bi-arrow-left"></span>Retour</a></div>
                 </fieldset>
                 }

@@ -8,13 +8,13 @@
 
     <div class="container">
         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Administration</h2>
-        Icon Divider
+        <!--Icon Divider-->
         <div>
             <div class="divider-custom-line"></div>
             <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
             <div class="divider-custom-line"></div>
         </div>
-        div pour mettre en colonne et centrer le contenu suivant l'horizontal
+        <!--div pour mettre en colonne et centrer le contenu suivant l'horizontal-->
         <div class="row justify-content-center">
             <div class="col-lg-10 offset-lg-1">
                 @using (Html.BeginForm("Modifier", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-lg-6">
                                 @Html.LabelFor(m => Model.ContactInfos.NumeroDeTelephone)
-                                @Html.TextBoxFor(m => Model.ContactInfos.NumeroDeTelephone, new { @class = "form-contact", placeholder = "Numéro de téléphone" })
+                                @Html.TextBoxFor(m => Model.ContactInfos.NumeroDeTelephone, new { @type = "phone", @class = "form-contact", placeholder = "Numéro de téléphone" })
                                 @Html.ValidationMessageFor(m => Model.ContactInfos.NumeroDeTelephone)
                             </div>
                         </div>
@@ -62,51 +62,30 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 @Html.LabelFor(m => Model.ContactInfos.AdresseMail)
-                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseMail, new { @class = "form-contact", placeholder = "Mail" })
+                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseMail, new { @type = "email", @class = "form-contact", placeholder = "Mail" })
                                 @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseMail)
                             </div>
                             <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.NumeroDeLaRue)
-                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.NumeroDeLaRue, new { @class = "form-contact", placeholder = "N° Rue" })
-                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.NumeroDeLaRue)
+                                @Html.LabelFor(m => Model.NumeroAppartement)
+                                @Html.TextBoxFor(m => Model.NumeroAppartement, new { @class = "form-contact", placeholder = "Numéro Appartement" })
+                                @Html.ValidationMessageFor(m => Model.NumeroAppartement)
                             </div>
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.NomDeLaRue)
-                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.NomDeLaRue, new { @class = "form-contact", placeholder = "Nom de la rue" })
-                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.NomDeLaRue)
-                            </div>
-                            <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.CodePostal)
-                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.CodePostal, new { @class = "form-contact", placeholder = "Code postal" })
-                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.CodePostal)
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-lg-6">
-                                @Html.LabelFor(m => Model.ContactInfos.AdresseContact.Commune)
-                                @Html.TextBoxFor(m => Model.ContactInfos.AdresseContact.Commune, new { @class = "form-contact", placeholder = "Commune" })
-                                @Html.ValidationMessageFor(m => Model.ContactInfos.AdresseContact.Commune)
-                            </div>
                             <div class="col-lg-6">
                                 @Html.LabelFor(m => Model.Compte.Identifiant)
-                                @Html.TextBoxFor(m => Model.Compte.Identifiant, new { @class = "form-contact", placeholder = "Identifiant" })
+                                @Html.TextBoxFor(m => Model.Compte.Identifiant, new { @class = "form-contact", placeholder = "Mot de passe" })
                                 @Html.ValidationMessageFor(m => Model.Compte.Identifiant)
                             </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 @Html.LabelFor(m => Model.Compte.MotDePasse)
                                 @Html.TextBoxFor(m => Model.Compte.MotDePasse, new { @type = "password", @class = "form-contact", placeholder = "Mot de passe" })
                                 @Html.ValidationMessageFor(m => Model.Compte.MotDePasse)
                             </div>
                         </div>
                         <br />
-                        @Html.HiddenFor(model => model.ImagePath)
+                        @*@Html.HiddenFor(model => model.ImagePath)
                         <div class="d-flex flex-row my-3">
                             <div class="mb-3 d-flex">
                                 <div>
@@ -117,7 +96,7 @@
                             <div class="text-center">
                                 <img src="@Model.ImagePath" height="50" width="50" />
                             </div>
-                        </div>
+                        </div>*@
                         <input type="submit" class="button1" value="Mofifier un utilisateur" />
                     </fieldset>
                 }
