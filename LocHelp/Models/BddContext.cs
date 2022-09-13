@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.Extensions.Configuration;
+
 
 namespace LocHelp.Models
 {
